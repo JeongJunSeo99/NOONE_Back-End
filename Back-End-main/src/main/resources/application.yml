@@ -1,0 +1,46 @@
+spring:
+  datasource:
+    driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy # log4j
+    url: jdbc:log4jdbc:mariadb://svc.sel4.cloudtype.app:30458/noone?characterEncoding=UTF-8&useTimezone=true&serverTimezone=Asia/Seoul
+    username: noone
+    password: noone@@
+  application:
+    name: no-one
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  output:
+    ansi:
+      enabled: always #콘솔 색상
+  config:
+    import:
+      - classpath:appConfig.yml
+  thymeleaf:
+    prefix: classpath:templates/
+    suffix: .html
+    cache: false
+  jpa.hibernate:
+    naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl  # ???? ???? ?? ??
+    naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
+  security:
+    user:
+      name: user
+      password: 1234
+  servlet:
+    multipart:
+      max-file-size: 256MB
+      max-request-size: 256MB
+
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 60m
+  tomcat:
+    remoteip:
+      remote-ip-header: "x-real-ip"
+      protocol-header: "x-forwarded-proto"
