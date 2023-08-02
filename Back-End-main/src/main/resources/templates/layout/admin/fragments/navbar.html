@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lagn="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<!-- Navbar -->
+<th:block th:fragment="navbarFragment">
+
+    <nav class="navbar navbar-light navbar-vertical navbar-expand-xl z-index-3">
+        <script>
+            var navbarStyle = localStorage.getItem("navbarStyle");
+            if (navbarStyle && navbarStyle !== 'transparent') {
+                document.querySelector('.navbar-vertical').classList.add(`navbar-${navbarStyle}`);
+            }
+        </script>
+        <div class="d-flex align-items-center">
+            <!--  토글 햄버거 버튼 동작 안함!-->
+            <div class="toggle-icon-wrapper">
+                <button class="btn navbar-toggler-humburger-icon navbar-vertical-toggle" data-bs-toggle="tooltip" data-bs-placement="left" title="Toggle Navigation">
+                    <span class="navbar-toggle-icon"><span class="toggle-line"></span></span>
+                </button>
+            </div>
+            <a class="navbar-brand" href="/">
+                <div class="d-flex align-items-start py-3">
+                    <img class="me-2" th:src="@{/assets/img/logo.png}" alt="" width="40" height="40"><span class="font-sans-serif ">NO:ONE</span>
+                </div>
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarVerticalCollapse">
+            <div class="navbar-vertical-content scrollbar">
+                <ul class="navbar-nav flex-column mb-3" id="navbarVerticalNav">
+
+                    <!-- 사이드 바 - 대시보드 어케쓸까 -->
+                    <!-- parent pages-->
+                    <a class="btn btn-primary" href="/user" role="button" data-bs-toggle="" aria-expanded="false">
+                        <div class="d-flex align-items-center">
+                            <span class="nav-link-icon"><span class="fas fa-question-circle"></span></span><span class="nav-link-text ps-1 text-nowrap">유저 관리</span>
+                        </div>
+                    </a>
+                    <div class="col ps-0"> <hr class="mb-0 navbar-vertical-divider" style="border-color:transparent;"/> </div>
+                    <a class="btn btn-primary" href="/content" role="button" data-bs-toggle="" aria-expanded="false">
+                        <div class="d-flex align-items-center">
+                            <span class="nav-link-icon"><span class="fas fa-door-open"></span></span><span class="nav-link-text ps-1 text-nowrap">게시글 관리</span>
+                        </div>
+                    </a>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+<!--    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">-->
+<!--        <div class="position-sticky pt-3 sidebar-sticky">-->
+<!--            <ul class="nav flex-column">-->
+
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link dropdown-indicator" href="/cms/manual">-->
+<!--                        <i class="fas fa-wrench fa-lg mr-3"></i> 사용자 메뉴얼-->
+<!--                    </a>-->
+<!--                </li>-->
+
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link dropdown-indicator" href="#">-->
+<!--                        <i class="fas fa-wrench fa-lg mr-3"></i> 취합 문서 등록-->
+<!--                    </a>-->
+<!--                </li>-->
+
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link dropdown-indicator" href="#">-->
+<!--                        <i class="fas fa-wrench fa-lg mr-3"></i> 문서 입력자 지정-->
+<!--                    </a>-->
+<!--                </li>-->
+
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link dropdown-indicator" href="#sysadmin" role="button" data-bs-toggle="collapse" aria-expanded="true" aria-controls="sysadmin">-->
+<!--                        <i class="fas fa-wrench fa-lg mr-3"></i> 취합 문서 보기-->
+<!--                    </a>-->
+<!--                    <ul class="nav collapse show" id="sysadmin">-->
+<!--                        <li class="nav-item">-->
+<!--                            <a href="#" class="nav-link" data-bs-toggle="" aria-expanded="false">-->
+<!--                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">주간 업무 보고</span></div>-->
+<!--                            </a>-->
+<!--                            <a href="#" class="nav-link" data-bs-toggle="" aria-expanded="false">-->
+<!--                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">월간 업무 보고</span></div>-->
+<!--                            </a>-->
+<!--                            <a href="#" class="nav-link" data-bs-toggle="" aria-expanded="false">-->
+<!--                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">민원 처리 보고</span></div>-->
+<!--                            </a>-->
+<!--                            <a href="#" class="nav-link" data-bs-toggle="" aria-expanded="false">-->
+<!--                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">예상 집행 보고</span></div>-->
+<!--                            </a>-->
+<!--                            <a href="#" class="nav-link" data-bs-toggle="" aria-expanded="false">-->
+<!--                                <div class="d-flex align-items-center"><span class="nav-link-text ps-1">...</span></div>-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </li>-->
+
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link dropdown-indicator" href="#">-->
+<!--                        <i class="fas fa-wrench fa-lg mr-3"></i> 사장님 공약사항-->
+<!--                    </a>-->
+<!--                </li>-->
+
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link dropdown-indicator" href="#" role="button" >-->
+<!--                        <i class="fas fa-wrench fa-lg mr-3"></i> 입력 문서 전체 보기-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    </nav>-->
+</th:block>
+
+</html>

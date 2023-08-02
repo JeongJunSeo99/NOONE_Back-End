@@ -1,9 +1,9 @@
 spring:
   datasource:
-    driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy # log4j
-    url: jdbc:log4jdbc:mariadb://svc.sel4.cloudtype.app:30458/noone?characterEncoding=UTF-8&useTimezone=true&serverTimezone=Asia/Seoul
-    username: noone
-    password: noone@@
+    driverClassName: com.mysql.cj.jdbc.Driver #net.sf.log4jdbc.sql.jdbcapi.DriverSpy # log4j
+    url: jdbc:mysql://spring-boot-capstone.cr2cex6a6lgf.ap-northeast-2.rds.amazonaws.com:3306/applepie?useUnicode=true&characterEncoding=utf8
+    username: admin
+    password: 34693469
   application:
     name: no-one
   jpa:
@@ -44,3 +44,15 @@ server:
     remoteip:
       remote-ip-header: "x-real-ip"
       protocol-header: "x-forwarded-proto"
+
+cloud:
+  aws:
+    region:
+      static: ap-northeast-2
+    s3:
+      bucket: likelion-noone
+  credentials:
+    access-key: AKIAWXUB7VDDVGIOQF3L
+    secret-key: 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
+    stack:
+      auto: false
