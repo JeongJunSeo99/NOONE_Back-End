@@ -63,14 +63,14 @@ public class ContentService extends BaseServiceImplWithJpa<ContentModel, Content
             contentPageEntity.setSize(contentPageEntity.getUploadFile().getSize());
             //저장된 파일 경로 -> contentPageEntity.setUrl();
             
-            List<TagEntity> tagEntityList = new ArrayList<>();
-            // 태그 저장 루프
-            for (TagEntity tagEntity : contentPageEntity.getTagEntityList()) {
-//                contentPageEntity.getTagEntityList().add(tagEntity);
-                tagEntityList.add(tagEntity);
-                tagEntity.setContentPageEntity(contentPageEntity);
-            }
-            contentPageEntity.getTagEntityList().addAll(tagEntityList);
+//            List<TagEntity> tagEntityList = new ArrayList<>();
+            // 태그 저장 루프 -> 변경: 태그를 페이지에 스트링으로 저장
+//            for (TagEntity tagEntity : contentPageEntity.getTagEntityList()) {
+////                contentPageEntity.getTagEntityList().add(tagEntity);
+//                tagEntityList.add(tagEntity);
+//                tagEntity.setContentPageEntity(contentPageEntity);
+//            }
+//            contentPageEntity.getTagEntityList().addAll(tagEntityList);
 
 //            contentEntity.getContentPageEntityList().add(contentPageEntity);
             contentPageEntityList.add(contentPageEntity);

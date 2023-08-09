@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
@@ -30,7 +31,7 @@ public class ContentPageModel extends BaseModel {
     private LocalDateTime updatedAt;
 
     private List<String> tagList = new ArrayList<>();
-    private List<TagModel> tagModelList = new ArrayList<>();
+//    private List<TagModel> tagModelList = new ArrayList<>();
 
     public ContentPageModel(ContentPageEntity entity) {
         this.pageId = entity.getPageId();
@@ -43,9 +44,10 @@ public class ContentPageModel extends BaseModel {
         this.pageOrder = entity.getPage_order();
         this.createdAt = entity.getCreatedAt();
         this.updatedAt = entity.getUpdatedAt();
-        this.tagModelList.addAll(
-                entity.getTagEntityList().stream().map(TagEntity::toModel).toList()
-        );
+        this.tagList.addAll(Arrays.asList(entity.getTagList().split(",")));
+//        this.tagModelList.addAll(
+//                entity.getTagEntityList().stream().map(TagEntity::toModel).toList()
+//        );
     }
 
     @Override

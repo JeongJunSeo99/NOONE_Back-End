@@ -21,6 +21,7 @@ import java.util.List;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
+@CrossOrigin
 @RequestMapping("/api/v1/content")
 public class ContentApiController extends BaseApiController<BaseApiDto<?>> {
     private final ContentService contentService;

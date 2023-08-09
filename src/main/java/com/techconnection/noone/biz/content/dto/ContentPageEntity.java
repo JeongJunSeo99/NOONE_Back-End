@@ -48,8 +48,11 @@ public class ContentPageEntity extends BaseEntity {
     @Transient
     private MultipartFile uploadFile;
 
-    @OneToMany(mappedBy = "contentPageEntity", cascade = CascadeType.ALL, orphanRemoval = true)
-    private final List<TagEntity> tagEntityList = new ArrayList<>();
+    @Column(name = "tag_list")
+    private String tagList;
+
+//    @OneToMany(mappedBy = "contentPageEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private final List<TagEntity> tagEntityList = new ArrayList<>();
 
     public ContentPageEntity(ContentPageModel model) {
         this.pageId = model.getPageId();
@@ -67,12 +70,18 @@ public class ContentPageEntity extends BaseEntity {
         this.originalName = model.getOriginalName();
         this.description = model.getDescription();
         this.page_order = model.getPageOrder();
+        StringBuilder sb = new StringBuilder();
+        for (String item : model.getTagList()) {
+            sb.append(item).append(", ");
+        }
+        sb.setLength(sb.length() - 2);
+        this.tagList = sb.toString();
 //        this.tageEntityList.addAll(
 //          model.getTagModelList().stream().map(TagModel::toEntity).toList()
 //        );
-        this.tagEntityList.addAll(
-          model.getTagList().stream().map(tag -> new TagModel(tag).toEntity()).toList()
-        );
+//        this.tagEntityList.addAll(
+//          model.getTagList().stream().map(tag -> new TagModel(tag).toEntity()).toList()
+//        );
     }
 
     @Override

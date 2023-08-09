@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Formula;
@@ -56,6 +57,7 @@ public class ContentEntity extends BaseEntity {
     private String shortYn;
 
     @Column(name = "view_yn")
+    @ColumnDefault("Y") //테스트
     private String viewYn;
 
     @OneToMany(mappedBy = "contentEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)

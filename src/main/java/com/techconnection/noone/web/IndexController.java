@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Slf4j
 @Controller
-@RequestMapping()
+@RequestMapping("/cms")
 public class IndexController extends BaseController {
 
 

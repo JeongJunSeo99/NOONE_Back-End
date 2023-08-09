@@ -57,6 +57,7 @@ public class ContentModel extends BaseModel {
 
     public ContentModel(ContentEntityInterface entityInterface) {
         this.contentId = entityInterface.getContentId();
+        this.userId = entityInterface.getUserId();
         this.title = entityInterface.getTitle();
         this.description = entityInterface.getDescription();
         this.category = entityInterface.getCategory();
@@ -64,6 +65,7 @@ public class ContentModel extends BaseModel {
         this.companyName = entityInterface.getCompanyName();
         this.deadLine = entityInterface.getDeadLine();
         this.shortYn = entityInterface.getShortYn();
+        this.viewYn = entityInterface.getViewYn();
     }
 
     public ContentModel onlyContent(ContentModel model) {

@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 
 public interface ContentEntityInterface {
     Long getContentId();
+
+    Long getUserId();
+
     String getTitle();
     String getDescription();
     String getCategory();
@@ -11,4 +14,6 @@ public interface ContentEntityInterface {
     String getCompanyName();
     LocalDateTime getDeadLine();
     String getShortYn();
+
+    String getViewYn();
 }

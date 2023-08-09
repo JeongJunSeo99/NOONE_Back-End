@@ -24,10 +24,6 @@ public class ContentServiceTest {
     @Mock
     private ContentService contentService;
 
-    @Test
-    public void getTest() throws Exception {
-        contentService
-    }
 
     @Test
     public void contentSaveTest() throws Exception {
@@ -46,8 +42,8 @@ public class ContentServiceTest {
         contentPageModel.setDescription("page 1 desc");
         contentPageModel.setPageOrder(1);
         ArrayList<String> list = new ArrayList<>();
-        list.add("tag1");
-        list.add("tag2");
+        list.add("taglist1");
+        list.add("taglist2");
         contentPageModel.setTagList(list);
 
         model.contentPageList.add(contentPageModel);

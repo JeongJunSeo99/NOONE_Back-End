@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 
 @ControllerAdvice(basePackages = "com.techconnection.noone.biz")
+@RequestMapping("/cms")
 public class ErrorController {
     private static Logger logger = LoggerFactory.getLogger(ErrorController.class);
 

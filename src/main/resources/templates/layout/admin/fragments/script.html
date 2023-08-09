@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lagn="ko" xmlns:th="http://www.thymeleaf.org">
 
-<!-- 공통으로 쓰이는 script 파일을넣는다.-->
 <th:block th:fragment="scriptFragment">
     <!-- ===============================================-->
     <!--    JavaScripts-->
@@ -14,9 +13,6 @@
 
     <script src="/assets/js/common_utils.js"></script>
 
-    <!-- ===============================================-->
-    <!--    JavaScripts-->
-    <!-- ===============================================-->
     <script th:src="@{/vendors/popper/popper.min.js}"></script>
 <!--    <script th:src="@{/vendors/bootstrap/bootstrap.min.js}"></script>-->
     <script th:src="@{/vendors/anchorjs/anchor.min.js}"></script>
