@@ -58,3 +58,7 @@ cloud:
     secret-key: Aa+3pRl33yXMVNZ6zZC5p8RIPxBOHEgbOX13Ufyq
     stack:
       auto: false
+
+jwt:
+  secret:
+    key: x!A%D*G-KaPdSgVkYp3s5v8y/B?E(H+M
