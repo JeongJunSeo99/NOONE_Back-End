@@ -32,10 +32,16 @@ public class UserDtoReq {
         private String email;
         private String password;
 
+        private String name;
+
+        private String phone;
+
         @Builder
-        public LoginDto(String email, String password) {
+        public LoginDto(String email, String password, String name, String phone) {
             this.email = email;
             this.password = password;
+            this.name = name;
+            this.phone = phone;
         }
 
     }

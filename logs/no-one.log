@@ -1671,3 +1671,291 @@ INFO  23-08-09 15:10:28[restartedMain] [o.s.b.d.a.OptionalLiveReloadServer:59] -
 INFO  23-08-09 15:10:28[restartedMain] [o.a.coyote.http11.Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
 INFO  23-08-09 15:10:28[restartedMain] [o.s.b.w.e.tomcat.TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
 INFO  23-08-09 15:10:28[restartedMain] [c.t.noone.NooneApplication:57] - Started NooneApplication in 12.296 seconds (process running for 13.492)
+INFO  23-08-09 15:13:59[restartedMain] [c.t.noone.NooneApplication:51] - Starting NooneApplication using Java 17.0.6 with PID 38964 (C:\Users\wjdwn\Desktop\대외활동\멋사\Back-End\build\classes\java\main started by wjdwn in C:\Users\wjdwn\Desktop\대외활동\멋사\Back-End)
+INFO  23-08-09 15:13:59[restartedMain] [c.t.noone.NooneApplication:634] - No active profile set, falling back to 1 default profile: "default"
+INFO  23-08-09 15:13:59[restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor:250] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  23-08-09 15:13:59[restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor:250] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  23-08-09 15:14:01[restartedMain] [o.s.d.r.c.RepositoryConfigurationDelegate:291] - Multiple Spring Data modules found, entering strict repository configuration mode
+INFO  23-08-09 15:14:01[restartedMain] [o.s.d.r.c.RepositoryConfigurationDelegate:138] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  23-08-09 15:14:02[restartedMain] [o.s.d.r.c.RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 446 ms. Found 6 JPA repository interfaces.
+INFO  23-08-09 15:14:02[restartedMain] [o.s.d.r.c.RepositoryConfigurationDelegate:291] - Multiple Spring Data modules found, entering strict repository configuration mode
+INFO  23-08-09 15:14:02[restartedMain] [o.s.d.r.c.RepositoryConfigurationDelegate:138] - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+INFO  23-08-09 15:14:02[restartedMain] [o.s.d.r.c.RepositoryConfigurationExtensionSupport:320] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.techconnection.noone.biz.content.repository.ContentPageRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+INFO  23-08-09 15:14:02[restartedMain] [o.s.d.r.c.RepositoryConfigurationExtensionSupport:320] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.techconnection.noone.biz.content.repository.ContentRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+INFO  23-08-09 15:14:02[restartedMain] [o.s.d.r.c.RepositoryConfigurationExtensionSupport:320] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.techconnection.noone.biz.content.repository.TagRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+INFO  23-08-09 15:14:02[restartedMain] [o.s.d.r.c.RepositoryConfigurationExtensionSupport:320] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.techconnection.noone.biz.sample.SampleBoardRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+INFO  23-08-09 15:14:02[restartedMain] [o.s.d.r.c.RepositoryConfigurationExtensionSupport:320] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.techconnection.noone.biz.user.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+INFO  23-08-09 15:14:02[restartedMain] [o.s.d.r.c.RepositoryConfigurationExtensionSupport:320] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.techconnection.noone.common.security.TokenRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+INFO  23-08-09 15:14:02[restartedMain] [o.s.d.r.c.RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 80 ms. Found 0 Redis repository interfaces.
+WARN  23-08-09 15:14:02[restartedMain] [o.m.s.mapper.ClassPathMapperScanner:44] - Skipping MapperFactoryBean with name 'contentPageRepository' and 'com.techconnection.noone.biz.content.repository.ContentPageRepository' mapperInterface. Bean already defined with the same name!
+WARN  23-08-09 15:14:02[restartedMain] [o.m.s.mapper.ClassPathMapperScanner:44] - Skipping MapperFactoryBean with name 'contentRepository' and 'com.techconnection.noone.biz.content.repository.ContentRepository' mapperInterface. Bean already defined with the same name!
+WARN  23-08-09 15:14:02[restartedMain] [o.m.s.mapper.ClassPathMapperScanner:44] - Skipping MapperFactoryBean with name 'tagRepository' and 'com.techconnection.noone.biz.content.repository.TagRepository' mapperInterface. Bean already defined with the same name!
+WARN  23-08-09 15:14:02[restartedMain] [o.m.s.mapper.ClassPathMapperScanner:44] - Skipping MapperFactoryBean with name 'sampleBoardRepository' and 'com.techconnection.noone.biz.sample.SampleBoardRepository' mapperInterface. Bean already defined with the same name!
+WARN  23-08-09 15:14:02[restartedMain] [o.m.s.mapper.ClassPathMapperScanner:44] - Skipping MapperFactoryBean with name 'userRepository' and 'com.techconnection.noone.biz.user.repository.UserRepository' mapperInterface. Bean already defined with the same name!
+WARN  23-08-09 15:14:02[restartedMain] [o.m.s.mapper.ClassPathMapperScanner:44] - Skipping MapperFactoryBean with name 'tokenRepository' and 'com.techconnection.noone.common.security.TokenRepository' mapperInterface. Bean already defined with the same name!
+INFO  23-08-09 15:14:03[restartedMain] [o.s.b.w.e.tomcat.TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  23-08-09 15:14:03[restartedMain] [o.a.coyote.http11.Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
+INFO  23-08-09 15:14:03[restartedMain] [o.a.catalina.core.StandardService:173] - Starting service [Tomcat]
+INFO  23-08-09 15:14:03[restartedMain] [o.a.catalina.core.StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/10.1.11]
+INFO  23-08-09 15:14:03[restartedMain] [o.a.c.c.C.[Tomcat].[localhost].[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  23-08-09 15:14:03[restartedMain] [o.s.b.w.s.c.ServletWebServerApplicationContext:291] - Root WebApplicationContext: initialization completed in 4012 ms
+INFO  23-08-09 15:14:04[restartedMain] [o.h.jpa.internal.util.LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: default]
+INFO  23-08-09 15:14:04[restartedMain] [org.hibernate.Version:44] - HHH000412: Hibernate ORM core version 6.2.6.Final
+INFO  23-08-09 15:14:04[restartedMain] [org.hibernate.cfg.Environment:191] - HHH000406: Using bytecode reflection optimizer
+INFO  23-08-09 15:14:04[restartedMain] [o.h.b.i.BytecodeProviderInitiator:53] - HHH000021: Bytecode provider name : bytebuddy
+INFO  23-08-09 15:14:05[restartedMain] [o.s.o.j.p.SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+INFO  23-08-09 15:14:05[restartedMain] [com.zaxxer.hikari.HikariDataSource:110] - HikariPool-1 - Starting...
+INFO  23-08-09 15:14:05[restartedMain] [com.zaxxer.hikari.pool.HikariPool:565] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@130a1fb4
+INFO  23-08-09 15:14:05[restartedMain] [com.zaxxer.hikari.HikariDataSource:123] - HikariPool-1 - Start completed.
+WARN  23-08-09 15:14:06[restartedMain] [org.hibernate.orm.deprecation:100] - HHH90000026: MySQL57Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+INFO  23-08-09 15:14:06[restartedMain] [o.h.b.i.BytecodeProviderInitiator:53] - HHH000021: Bytecode provider name : bytebuddy
+INFO  23-08-09 15:14:08[restartedMain] [o.h.e.t.j.p.i.JtaPlatformInitiator:51] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+WARN  23-08-09 15:14:08[restartedMain] [o.h.t.s.i.ExceptionHandlerLoggedImpl:27] - GenerationTarget encountered exception accepting command : Error executing DDL "
+    alter table Authority 
+       drop 
+       foreign key FKgyd6vmoj9j1jkms4q6ymayn59" via JDBC [Table 'noone.Authority' doesn't exist]
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    alter table Authority 
+       drop 
+       foreign key FKgyd6vmoj9j1jkms4q6ymayn59" via JDBC [Table 'noone.Authority' doesn't exist]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:92)
+	at org.hibernate.tool.schema.internal.Helper.applySqlString(Helper.java:235)
+	at org.hibernate.tool.schema.internal.Helper.applySqlStrings(Helper.java:219)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applyConstraintDropping(SchemaDropperImpl.java:455)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropConstraintsTablesSequences(SchemaDropperImpl.java:242)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:215)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:185)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:155)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:115)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:242)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1421)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:292)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:431)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1455)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1817)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1766)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1155)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:932)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:608)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:436)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+	at com.techconnection.noone.NooneApplication.main(NooneApplication.java:13)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: java.sql.SQLSyntaxErrorException: Table 'noone.Authority' doesn't exist
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:763)
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:648)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:78)
+	... 45 common frames omitted
+WARN  23-08-09 15:14:08[restartedMain] [o.h.t.s.i.ExceptionHandlerLoggedImpl:27] - GenerationTarget encountered exception accepting command : Error executing DDL "
+    alter table content_page 
+       drop 
+       foreign key FKs38qsrl3fr9wyrlaknfa5pap5" via JDBC [Table 'noone.content_page' doesn't exist]
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    alter table content_page 
+       drop 
+       foreign key FKs38qsrl3fr9wyrlaknfa5pap5" via JDBC [Table 'noone.content_page' doesn't exist]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:92)
+	at org.hibernate.tool.schema.internal.Helper.applySqlString(Helper.java:235)
+	at org.hibernate.tool.schema.internal.Helper.applySqlStrings(Helper.java:219)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applyConstraintDropping(SchemaDropperImpl.java:455)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropConstraintsTablesSequences(SchemaDropperImpl.java:242)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:215)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:185)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:155)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:115)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:242)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1421)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:292)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:431)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1455)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1817)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1766)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1155)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:932)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:608)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:436)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+	at com.techconnection.noone.NooneApplication.main(NooneApplication.java:13)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: java.sql.SQLSyntaxErrorException: Table 'noone.content_page' doesn't exist
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:763)
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:648)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:78)
+	... 45 common frames omitted
+WARN  23-08-09 15:14:08[restartedMain] [o.h.t.s.i.ExceptionHandlerLoggedImpl:27] - GenerationTarget encountered exception accepting command : Error executing DDL "
+    alter table tag 
+       drop 
+       foreign key FK8wsvxqnjipkq9y71w7sxglp74" via JDBC [Table 'noone.tag' doesn't exist]
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "
+    alter table tag 
+       drop 
+       foreign key FK8wsvxqnjipkq9y71w7sxglp74" via JDBC [Table 'noone.tag' doesn't exist]
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:92)
+	at org.hibernate.tool.schema.internal.Helper.applySqlString(Helper.java:235)
+	at org.hibernate.tool.schema.internal.Helper.applySqlStrings(Helper.java:219)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applyConstraintDropping(SchemaDropperImpl.java:455)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropConstraintsTablesSequences(SchemaDropperImpl.java:242)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:215)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:185)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:155)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:115)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:242)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.lambda$process$5(SchemaManagementToolCoordinator.java:143)
+	at java.base/java.util.HashMap.forEach(HashMap.java:1421)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:140)
+	at org.hibernate.boot.internal.SessionFactoryObserverForSchemaExport.sessionFactoryCreated(SessionFactoryObserverForSchemaExport.java:37)
+	at org.hibernate.internal.SessionFactoryObserverChain.sessionFactoryCreated(SessionFactoryObserverChain.java:35)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:292)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:431)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1455)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:75)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1817)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1766)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:598)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:520)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:326)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:324)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1155)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:932)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:608)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:436)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295)
+	at com.techconnection.noone.NooneApplication.main(NooneApplication.java:13)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: java.sql.SQLSyntaxErrorException: Table 'noone.tag' doesn't exist
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:763)
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:648)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:78)
+	... 45 common frames omitted
+INFO  23-08-09 15:14:08[restartedMain] [o.s.o.j.LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+WARN  23-08-09 15:14:10[restartedMain] [o.m.spring.SqlSessionFactoryBean:44] - Property 'mapperLocations' was specified but matching resources are not found.
+WARN  23-08-09 15:14:10[restartedMain] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration:231] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  23-08-09 15:14:10[restartedMain] [o.s.s.web.DefaultSecurityFilterChain:54] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1789bc73, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4f66249c, org.springframework.security.web.context.SecurityContextHolderFilter@26e26e75, org.springframework.security.web.header.HeaderWriterFilter@4b1eefe6, org.springframework.web.filter.CorsFilter@1fe34c01, org.springframework.security.web.authentication.logout.LogoutFilter@6e37cb48, com.techconnection.noone.common.security.JwtAuthenticationFilter@a9f2643, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@55cdab64, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7151b5ce, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@502f6947, org.springframework.security.web.session.SessionManagementFilter@45b17c6, org.springframework.security.web.access.ExceptionTranslationFilter@30a5c3f6]
+INFO  23-08-09 15:14:11[restartedMain] [o.s.b.a.w.s.WelcomePageHandlerMapping:57] - Adding welcome page template: index
+INFO  23-08-09 15:14:12[restartedMain] [o.s.b.d.a.OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
+INFO  23-08-09 15:14:12[restartedMain] [o.a.coyote.http11.Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
+INFO  23-08-09 15:14:12[restartedMain] [o.s.b.w.e.tomcat.TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  23-08-09 15:14:12[restartedMain] [c.t.noone.NooneApplication:57] - Started NooneApplication in 14.224 seconds (process running for 15.47)
+INFO  23-08-09 15:16:34[restartedMain] [c.t.noone.NooneApplication:51] - Starting NooneApplication using Java 17.0.6 with PID 39468 (C:\Users\wjdwn\Desktop\대외활동\멋사\Back-End\build\classes\java\main started by wjdwn in C:\Users\wjdwn\Desktop\대외활동\멋사\Back-End)
+INFO  23-08-09 15:16:34[restartedMain] [c.t.noone.NooneApplication:634] - No active profile set, falling back to 1 default profile: "default"
+INFO  23-08-09 15:16:35[restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor:250] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  23-08-09 15:16:35[restartedMain] [o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor:250] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+INFO  23-08-09 15:16:36[restartedMain] [o.s.d.r.c.RepositoryConfigurationDelegate:291] - Multiple Spring Data modules found, entering strict repository configuration mode
+INFO  23-08-09 15:16:36[restartedMain] [o.s.d.r.c.RepositoryConfigurationDelegate:138] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+INFO  23-08-09 15:16:37[restartedMain] [o.s.d.r.c.RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 470 ms. Found 6 JPA repository interfaces.
+INFO  23-08-09 15:16:37[restartedMain] [o.s.d.r.c.RepositoryConfigurationDelegate:291] - Multiple Spring Data modules found, entering strict repository configuration mode
+INFO  23-08-09 15:16:37[restartedMain] [o.s.d.r.c.RepositoryConfigurationDelegate:138] - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+INFO  23-08-09 15:16:37[restartedMain] [o.s.d.r.c.RepositoryConfigurationExtensionSupport:320] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.techconnection.noone.biz.content.repository.ContentPageRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+INFO  23-08-09 15:16:37[restartedMain] [o.s.d.r.c.RepositoryConfigurationExtensionSupport:320] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.techconnection.noone.biz.content.repository.ContentRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+INFO  23-08-09 15:16:37[restartedMain] [o.s.d.r.c.RepositoryConfigurationExtensionSupport:320] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.techconnection.noone.biz.content.repository.TagRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+INFO  23-08-09 15:16:37[restartedMain] [o.s.d.r.c.RepositoryConfigurationExtensionSupport:320] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.techconnection.noone.biz.sample.SampleBoardRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+INFO  23-08-09 15:16:37[restartedMain] [o.s.d.r.c.RepositoryConfigurationExtensionSupport:320] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.techconnection.noone.biz.user.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+INFO  23-08-09 15:16:37[restartedMain] [o.s.d.r.c.RepositoryConfigurationExtensionSupport:320] - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.techconnection.noone.common.security.TokenRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+INFO  23-08-09 15:16:37[restartedMain] [o.s.d.r.c.RepositoryConfigurationDelegate:208] - Finished Spring Data repository scanning in 82 ms. Found 0 Redis repository interfaces.
+WARN  23-08-09 15:16:37[restartedMain] [o.m.s.mapper.ClassPathMapperScanner:44] - Skipping MapperFactoryBean with name 'contentPageRepository' and 'com.techconnection.noone.biz.content.repository.ContentPageRepository' mapperInterface. Bean already defined with the same name!
+WARN  23-08-09 15:16:37[restartedMain] [o.m.s.mapper.ClassPathMapperScanner:44] - Skipping MapperFactoryBean with name 'contentRepository' and 'com.techconnection.noone.biz.content.repository.ContentRepository' mapperInterface. Bean already defined with the same name!
+WARN  23-08-09 15:16:37[restartedMain] [o.m.s.mapper.ClassPathMapperScanner:44] - Skipping MapperFactoryBean with name 'tagRepository' and 'com.techconnection.noone.biz.content.repository.TagRepository' mapperInterface. Bean already defined with the same name!
+WARN  23-08-09 15:16:37[restartedMain] [o.m.s.mapper.ClassPathMapperScanner:44] - Skipping MapperFactoryBean with name 'sampleBoardRepository' and 'com.techconnection.noone.biz.sample.SampleBoardRepository' mapperInterface. Bean already defined with the same name!
+WARN  23-08-09 15:16:37[restartedMain] [o.m.s.mapper.ClassPathMapperScanner:44] - Skipping MapperFactoryBean with name 'userRepository' and 'com.techconnection.noone.biz.user.repository.UserRepository' mapperInterface. Bean already defined with the same name!
+WARN  23-08-09 15:16:37[restartedMain] [o.m.s.mapper.ClassPathMapperScanner:44] - Skipping MapperFactoryBean with name 'tokenRepository' and 'com.techconnection.noone.common.security.TokenRepository' mapperInterface. Bean already defined with the same name!
+INFO  23-08-09 15:16:38[restartedMain] [o.s.b.w.e.tomcat.TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  23-08-09 15:16:38[restartedMain] [o.a.coyote.http11.Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
+INFO  23-08-09 15:16:38[restartedMain] [o.a.catalina.core.StandardService:173] - Starting service [Tomcat]
+INFO  23-08-09 15:16:38[restartedMain] [o.a.catalina.core.StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/10.1.11]
+INFO  23-08-09 15:16:39[restartedMain] [o.a.c.c.C.[Tomcat].[localhost].[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  23-08-09 15:16:39[restartedMain] [o.s.b.w.s.c.ServletWebServerApplicationContext:291] - Root WebApplicationContext: initialization completed in 3988 ms
+INFO  23-08-09 15:16:39[restartedMain] [o.h.jpa.internal.util.LogHelper:31] - HHH000204: Processing PersistenceUnitInfo [name: default]
+INFO  23-08-09 15:16:39[restartedMain] [org.hibernate.Version:44] - HHH000412: Hibernate ORM core version 6.2.6.Final
+INFO  23-08-09 15:16:39[restartedMain] [org.hibernate.cfg.Environment:191] - HHH000406: Using bytecode reflection optimizer
+INFO  23-08-09 15:16:39[restartedMain] [o.h.b.i.BytecodeProviderInitiator:53] - HHH000021: Bytecode provider name : bytebuddy
+INFO  23-08-09 15:16:40[restartedMain] [o.s.o.j.p.SpringPersistenceUnitInfo:87] - No LoadTimeWeaver setup: ignoring JPA class transformer
+INFO  23-08-09 15:16:40[restartedMain] [com.zaxxer.hikari.HikariDataSource:110] - HikariPool-1 - Starting...
+INFO  23-08-09 15:16:40[restartedMain] [com.zaxxer.hikari.pool.HikariPool:565] - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5c397b35
+INFO  23-08-09 15:16:40[restartedMain] [com.zaxxer.hikari.HikariDataSource:123] - HikariPool-1 - Start completed.
+WARN  23-08-09 15:16:40[restartedMain] [org.hibernate.orm.deprecation:100] - HHH90000026: MySQL57Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+INFO  23-08-09 15:16:41[restartedMain] [o.h.b.i.BytecodeProviderInitiator:53] - HHH000021: Bytecode provider name : bytebuddy
+INFO  23-08-09 15:16:42[restartedMain] [o.h.e.t.j.p.i.JtaPlatformInitiator:51] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+INFO  23-08-09 15:16:43[restartedMain] [o.s.o.j.LocalContainerEntityManagerFactoryBean:437] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+WARN  23-08-09 15:16:44[restartedMain] [o.m.spring.SqlSessionFactoryBean:44] - Property 'mapperLocations' was specified but matching resources are not found.
+WARN  23-08-09 15:16:45[restartedMain] [o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration:231] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+INFO  23-08-09 15:16:45[restartedMain] [o.s.s.web.DefaultSecurityFilterChain:54] - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@52c767c9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2ec4579a, org.springframework.security.web.context.SecurityContextHolderFilter@15e1b590, org.springframework.security.web.header.HeaderWriterFilter@14ed0e51, org.springframework.web.filter.CorsFilter@7c0c72fc, org.springframework.security.web.authentication.logout.LogoutFilter@7ce90be1, com.techconnection.noone.common.security.JwtAuthenticationFilter@38a2ead6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@370fc1fd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@43235a7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@51322b24, org.springframework.security.web.session.SessionManagementFilter@64622ed4, org.springframework.security.web.access.ExceptionTranslationFilter@389267f6]
+INFO  23-08-09 15:16:45[restartedMain] [o.s.b.a.w.s.WelcomePageHandlerMapping:57] - Adding welcome page template: index
+INFO  23-08-09 15:16:46[restartedMain] [o.s.b.d.a.OptionalLiveReloadServer:59] - LiveReload server is running on port 35729
+INFO  23-08-09 15:16:46[restartedMain] [o.a.coyote.http11.Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
+INFO  23-08-09 15:16:46[restartedMain] [o.s.b.w.e.tomcat.TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  23-08-09 15:16:46[restartedMain] [c.t.noone.NooneApplication:57] - Started NooneApplication in 13.365 seconds (process running for 14.567)
+INFO  23-08-09 15:17:19[http-nio-8080-exec-1] [o.a.c.c.C.[Tomcat].[localhost].[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  23-08-09 15:17:19[http-nio-8080-exec-1] [o.s.web.servlet.DispatcherServlet:532] - Initializing Servlet 'dispatcherServlet'
+INFO  23-08-09 15:17:19[http-nio-8080-exec-1] [o.s.web.servlet.DispatcherServlet:554] - Completed initialization in 2 ms
