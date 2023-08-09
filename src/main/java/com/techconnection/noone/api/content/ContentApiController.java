@@ -2,6 +2,7 @@ package com.techconnection.noone.api.content;
 
 import com.amazonaws.util.IOUtils;
 import com.techconnection.noone.biz.content.dto.ContentModel;
+import com.techconnection.noone.biz.content.dto.ContentPageModel;
 import com.techconnection.noone.biz.content.service.ContentService;
 import com.techconnection.noone.common.controller.BaseApiController;
 import com.techconnection.noone.common.controller.BaseApiDto;
@@ -21,7 +22,7 @@ import java.util.List;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
-@CrossOrigin
+@CrossOrigin("*")
 @RequestMapping("/api/v1/content")
 public class ContentApiController extends BaseApiController<BaseApiDto<?>> {
     private final ContentService contentService;
@@ -59,7 +60,7 @@ public class ContentApiController extends BaseApiController<BaseApiDto<?>> {
         }
     }
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<BaseApiDto<?>> register(@RequestBody ContentModel model) {
         try {
             return super.ok(new BaseApiDto<>(contentService.add(model)));
