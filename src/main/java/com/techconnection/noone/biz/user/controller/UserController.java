@@ -20,7 +20,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping(value = "signup")
-    public ResponseEntity<Object> signup(@ModelAttribute("signUpDto") UserDtoReq.SignUpDto signUpDto) throws Exception {
+    public ResponseEntity<Object> signup(@RequestBody UserDtoReq.SignUpDto signUpDto) throws Exception {
         userService.signUp(signUpDto); //, imgFile);
         return new ResponseEntity<>("정상적인 접근: 회원가입 완료", HttpStatus.CREATED);
     }
