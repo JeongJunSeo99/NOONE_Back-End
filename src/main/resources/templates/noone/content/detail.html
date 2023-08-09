@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/admin/layout}">
+
+<th:block layout:fragment="content">
+  <div class="container-fluid">
+    <h1>콘텐츠 관리 - 상세 정보</h1>
+    <div class="row" id="contentDetail">
+      <main>
+        <div class="card-body bg-light">
+          <form class="row g-3" th:action="@{/content/modify}" th:object="${contentDetail}" th:field="*{contentId}" method="POST">
+            <input type="hidden" th:field="*{contentId}" id="contentId">
+            <input type="hidden" th:field="*{viewCount}" id="viewCount">
+            <div class="col-12 d-flex justify-content-end">
+              <button class="btn btn-primary" type="submit">수정하기 </button>
+            </div>
+            <div class="col-lg-3">
+              <label class="form-label" for="user-id">사용자 ID</label>
+              <input readonly class="form-control" id="user-id" type="text" th:field="*{userId}" />
+            </div>
+            <div class="col-lg-3">
+              <label class="form-label" for="user-name">사용자 이름</label>
+              <input readonly class="form-control" id="user-name" type="text" th:field="*{userName}" />
+            </div>
+            <div class="col-lg-4">
+              <label class="form-label" for="title">컨텐츠 제목</label>
+              <input class="form-control" id="title" type="text" th:field="*{title}" />
+            </div>
+            <div class="col-lg-2">
+              <label class="form-label" for="category">카테고리</label>
+              <input class="form-control" id="category" type="text" th:field="*{category}" />
+            </div>
+            <div class="col-lg-12">
+              <label class="form-label" for="description">컨텐츠 설명</label>
+              <input class="form-control" id="description" type="text" th:field="*{description}" />
+            </div>
+            <div class="col-lg-3">
+              <label class="form-label" for="company-name">회사 이름</label>
+              <input class="form-control" id="company-name" type="text" th:field="*{companyName}" />
+            </div>
+            <div class="col-lg-2">
+              <label class="form-label" for="short-yn">단기 컨텐츠 여부</label>
+              <select class="form-control" id="short-yn" th:field="*{shortYn}">
+                <option th:each="ynCd : ${ynMap}"
+                        th:value="${ynCd.key}"
+                        th:text="${ynCd.value}"
+                        th:selected="${ynCd.key} == ${contentDetail.shortYn} ? true : false">
+
+                </option>
+              </select>
+            </div>
+            <div class="col-lg-2">
+              <label class="form-label" for="view-yn">콘텐츠 활성화 여부</label>
+              <select class="form-control" id="view-yn" th:field="*{viewYn}">
+                <option th:each="ynCd : ${ynMap}"
+                        th:value="${ynCd.key}"
+                        th:text="${ynCd.value}"
+                        th:selected="${ynCd.key} == ${contentDetail.viewYn} ? true : false">
+
+                </option>
+              </select>
+            </div>
+            <div class="col-lg-5">
+              <label class="form-label" for="dead-line">마감 기한</label>
+              <div class="input-group date">
+                <input type="datetime-local" class="form-control" id="dead-line" autocomplete="off" th:field="*{deadLine}"/>
+              </div>
+              </select>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </div>
+</th:block>
+
+</html>
+
+<script type="text/javascript">
+
+</script>

@@ -1,9 +1,9 @@
 spring:
   datasource:
-    driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy # log4j #com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://spring-boot-capstone.cr2cex6a6lgf.ap-northeast-2.rds.amazonaws.com:3306/applepie?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://spring-boot-capstone.cr2cex6a6lgf.ap-northeast-2.rds.amazonaws.com:3306/noone?useUnicode=true&characterEncoding=utf8
     username: admin
     password: 34693469
+    driver-class-name: com.mysql.cj.jdbc.Driver
   application:
     name: no-one
   jpa:
@@ -13,6 +13,8 @@ spring:
     properties:
       hibernate:
         format_sql: true
+    database: mysql
+
   output:
     ansi:
       enabled: always #콘솔 색상
