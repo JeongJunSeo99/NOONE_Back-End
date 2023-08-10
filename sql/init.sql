@@ -60,5 +60,5 @@ CREATE TABLE Authority (
     name varchar(255) null,
     email varchar(255) not null,
     primary key (id),
-    foreign key (email) references User(id)
+    foreign key (email) references User(email)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='유저 권한 부여 테이블';
