@@ -17,6 +17,7 @@ import java.util.Map;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 @RequestMapping("/cms/content")
 public class ContentController {
     private final ContentService contentService;

@@ -11,11 +11,21 @@ public class UserDtoReq {
         private String email;
         private String password;
 
+        private String name;
+
+        private String phone;
+
+        private String passwordConfirm;
+
+        private String verificationCode;
+
 
         @Builder
-        public SignUpDto(String userId, String password){
+        public SignUpDto(String userId, String password, String name, String phone){
             this.email = userId;
             this.password = password;
+            this.name = name;
+            this.phone = phone;
         }
 
         public User toUser() {
@@ -32,16 +42,12 @@ public class UserDtoReq {
         private String email;
         private String password;
 
-        private String name;
 
-        private String phone;
 
         @Builder
-        public LoginDto(String email, String password, String name, String phone) {
+        public LoginDto(String email, String password) {
             this.email = email;
             this.password = password;
-            this.name = name;
-            this.phone = phone;
         }
 
     }

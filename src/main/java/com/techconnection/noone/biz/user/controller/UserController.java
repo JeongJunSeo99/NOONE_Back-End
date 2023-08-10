@@ -14,15 +14,23 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
-    @PostMapping(value = "signup")
+    @GetMapping
+    public String test1() {
+        return "ok";
+    }
+
+    @PostMapping("/signup")
     public ResponseEntity<Object> signup(@RequestBody UserDtoReq.SignUpDto signUpDto) throws Exception {
-        userService.signUp(signUpDto); //, imgFile);
-        return new ResponseEntity<>("정상적인 접근: 회원가입 완료", HttpStatus.CREATED);
+
+        userService.signUp(signUpDto);
+
+        return new ResponseEntity<>( "정상적인 접근: 회원가입 완료", HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
@@ -50,4 +58,6 @@ public class UserController {
         Optional<User> user = userService.test();
         return new ResponseEntity<>(user.get(), HttpStatus.OK);
     }
+
+
 }
