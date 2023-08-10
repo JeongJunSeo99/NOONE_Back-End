@@ -74,7 +74,7 @@ public class ContentPageEntity extends BaseEntity {
         for (String item : model.getTagList()) {
             sb.append(item).append(", ");
         }
-        sb.setLength(sb.length() - 2);
+        if (sb.length() > 0) sb.setLength(sb.length() - 2);
         this.tagList = sb.toString();
 //        this.tageEntityList.addAll(
 //          model.getTagModelList().stream().map(TagModel::toEntity).toList()

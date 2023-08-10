@@ -36,7 +36,7 @@ public class FileSystemStorageService implements StorageService {
             if (file.isEmpty()) {
                 throw new StorageException("Failed to store empty file.");
             }
-            String current = userId.toString() + "/" + DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH-mm-ss").format(LocalDateTime.now());
+            String current = userId.toString() + "/" + DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH-mm").format(LocalDateTime.now());
 
             Path storeDir = this.rootLocation.resolve(Paths.get(current));
 

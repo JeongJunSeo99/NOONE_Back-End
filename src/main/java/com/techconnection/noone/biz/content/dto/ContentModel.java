@@ -6,6 +6,7 @@ import jakarta.persistence.Embeddable;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -27,6 +28,8 @@ public class ContentModel extends BaseModel {
     private String category;
     private int viewCount;
     private String companyName;
+    private MultipartFile uploadFile;
+    private String companyImg;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime deadLine;
     private String shortYn;
@@ -45,6 +48,8 @@ public class ContentModel extends BaseModel {
         this.category = entity.getCategory();
         this.viewCount = entity.getViewCount();
         this.companyName = entity.getCompanyName();
+        this.uploadFile = entity.getUploadFile();
+        this.companyImg = entity.getCompanyImg();
         this.deadLine = entity.getDeadLine();
         this.shortYn = entity.getShortYn();
         this.viewYn = entity.getViewYn();
@@ -63,6 +68,7 @@ public class ContentModel extends BaseModel {
         this.category = entityInterface.getCategory();
         this.viewCount = entityInterface.getViewCount();
         this.companyName = entityInterface.getCompanyName();
+        this.companyImg = entityInterface.getCompanyImg();
         this.deadLine = entityInterface.getDeadLine();
         this.shortYn = entityInterface.getShortYn();
         this.viewYn = entityInterface.getViewYn();

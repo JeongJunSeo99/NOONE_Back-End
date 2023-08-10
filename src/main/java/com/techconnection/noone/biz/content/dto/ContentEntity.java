@@ -10,6 +10,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Formula;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -50,6 +51,12 @@ public class ContentEntity extends BaseEntity {
     @Column(name = "company_name")
     private String companyName;
 
+    @Column(name = "company_img")
+    private String companyImg;
+
+    @Transient
+    private MultipartFile uploadFile;
+
     @Column(name="deadline")
     private LocalDateTime deadLine;
 
@@ -74,6 +81,7 @@ public class ContentEntity extends BaseEntity {
         this.category = model.getCategory();
         this.viewCount = model.getViewCount();
         this.companyName = model.getCompanyName();
+        this.companyImg = model.getCompanyImg();
         this.deadLine = model.getDeadLine();
         this.shortYn = model.getShortYn();
         this.viewYn = model.getViewYn();

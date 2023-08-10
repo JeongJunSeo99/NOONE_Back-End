@@ -4,8 +4,10 @@ import com.amazonaws.util.IOUtils;
 import com.techconnection.noone.biz.content.dto.ContentModel;
 import com.techconnection.noone.biz.content.dto.ContentPageModel;
 import com.techconnection.noone.biz.content.service.ContentService;
+import com.techconnection.noone.common.code.ResultCode;
 import com.techconnection.noone.common.controller.BaseApiController;
 import com.techconnection.noone.common.controller.BaseApiDto;
+import com.techconnection.noone.common.exception.BizException;
 import com.techconnection.noone.common.utils.ResponseEntityUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -61,10 +63,15 @@ public class ContentApiController extends BaseApiController<BaseApiDto<?>> {
     }
 
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<BaseApiDto<?>> register(@RequestBody ContentModel model) {
+    public ResponseEntity<BaseApiDto<?>> register(@ModelAttribute ContentModel model) {
+        //저장 권한 검사
+//        if (!userInfo.isLogin()) {
+//            throw new BizException(ResultCode.HTTP_403.setErrMsg("저장 권한이 없습니다."));
+//        }
         try {
             return super.ok(new BaseApiDto<>(contentService.add(model)));
         } catch (Exception e) {
+            e.printStackTrace();
             return super.fail(BaseApiDto.newBaseApiDto(), "9999", "저장 실패 : " + e.getMessage());
         }
     }

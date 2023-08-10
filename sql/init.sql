@@ -9,6 +9,7 @@ CREATE TABLE content (
     category	    varchar(20)	    NOT NULL,
     view_count	    integer     	NOT NULL	DEFAULT 0,
     company_name	varchar(50) 	NULL,
+    company_img     varchar(255)    NOT NULL,
     deadline	    datetime	    NULL,
     short_yn    	varchar(1)  	NOT NULL	DEFAULT 'N',
     view_yn	        varchar(1)  	NOT NULL	DEFAULT 'Y'	COMMENT '어드민에서 검토 후  노출 결정',

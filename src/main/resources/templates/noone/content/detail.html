@@ -17,29 +17,37 @@
             <div class="col-12 d-flex justify-content-end">
               <button class="btn btn-primary" type="submit">수정하기 </button>
             </div>
-            <div class="col-lg-3">
-              <label class="form-label" for="user-id">사용자 ID</label>
-              <input readonly class="form-control" id="user-id" type="text" th:field="*{userId}" />
-            </div>
-            <div class="col-lg-3">
-              <label class="form-label" for="user-name">사용자 이름</label>
-              <input readonly class="form-control" id="user-name" type="text" th:field="*{userName}" />
+            <div class="col-lg-8">
+              <div class="row g-3">
+                <div class="col-lg-3">
+                  <label class="form-label" for="user-id">사용자 ID</label>
+                  <input readonly class="form-control" id="user-id" type="text" th:field="*{userId}" />
+                </div>
+                <div class="col-lg-4">
+                  <label class="form-label" for="user-name">사용자 이름</label>
+                  <input readonly class="form-control" id="user-name" type="text" th:field="*{userName}" />
+                </div>
+                <div class="col-lg-5">
+                  <label class="form-label" for="company-name">회사 이름</label>
+                  <input class="form-control" id="company-name" type="text" th:field="*{companyName}" />
+                </div>
+                <div class="col-lg-2">
+                  <label class="form-label" for="category">카테고리</label>
+                  <input class="form-control" id="category" type="text" th:field="*{category}" />
+                </div>
+                <div class="col-lg-10">
+                  <label class="form-label" for="title">컨텐츠 제목</label>
+                  <input class="form-control" id="title" type="text" th:field="*{title}" />
+                </div>
+              </div>
             </div>
             <div class="col-lg-4">
-              <label class="form-label" for="title">컨텐츠 제목</label>
-              <input class="form-control" id="title" type="text" th:field="*{title}" />
-            </div>
-            <div class="col-lg-2">
-              <label class="form-label" for="category">카테고리</label>
-              <input class="form-control" id="category" type="text" th:field="*{category}" />
+              <label for="com-img">회사 이미지</label>
+              <img id="com-img" src="https://picsum.photos/id/237/300/200" alt="기업 이미지">
             </div>
             <div class="col-lg-12">
               <label class="form-label" for="description">컨텐츠 설명</label>
               <input class="form-control" id="description" type="text" th:field="*{description}" />
-            </div>
-            <div class="col-lg-3">
-              <label class="form-label" for="company-name">회사 이름</label>
-              <input class="form-control" id="company-name" type="text" th:field="*{companyName}" />
             </div>
             <div class="col-lg-2">
               <label class="form-label" for="short-yn">단기 컨텐츠 여부</label>

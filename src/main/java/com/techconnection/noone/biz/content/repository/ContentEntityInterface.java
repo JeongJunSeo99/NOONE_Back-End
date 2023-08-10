@@ -12,6 +12,7 @@ public interface ContentEntityInterface {
     String getCategory();
     Integer getViewCount();
     String getCompanyName();
+    String getCompanyImg();
     LocalDateTime getDeadLine();
     String getShortYn();
 

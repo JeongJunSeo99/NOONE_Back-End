@@ -55,10 +55,16 @@ public class ContentService extends BaseServiceImplWithJpa<ContentModel, Content
     public ContentModel add(ContentModel model) throws Exception {
         ContentEntity contentEntity = model.toEntity();
         List<ContentPageEntity> contentPageEntityList = new ArrayList<>();
+
+        contentEntity.setCompanyImg(storageService.store(model.getUploadFile(), model.getUserId()));
+
         //페이지 저장 루프
         for (ContentPageEntity contentPageEntity : contentEntity.getContentPageEntityList()) {
+            log.info("In add ContentPage Loop : contentPageEntity = {}", contentPageEntity);
             //페이지 별 파일 저장
             contentPageEntity.setUrl(storageService.store(contentPageEntity.getUploadFile(), model.getUserId()));
+
+
             contentPageEntity.setOriginalName(contentPageEntity.getUploadFile().getOriginalFilename());
             contentPageEntity.setSize(contentPageEntity.getUploadFile().getSize());
             //저장된 파일 경로 -> contentPageEntity.setUrl();
