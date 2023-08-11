@@ -53,11 +53,11 @@ cloud:
       static: ap-northeast-2
     s3:
       bucket: likelion-noone
-  credentials:
-    access-key: AKIAWXUB7VDDVGIOQF3L
-    secret-key: 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
-    stack:
-      auto: false
+    credentials:
+      access-key: AKIAWXUB7VDDVGIOQF3L
+      secret-key: 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
+      stack:
+        auto: false
 
 jwt:
   secret:
