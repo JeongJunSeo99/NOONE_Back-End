@@ -43,7 +43,7 @@
             </div>
             <div class="col-lg-4">
               <label for="com-img">회사 이미지</label>
-              <img id="com-img" src="https://picsum.photos/id/237/300/200" alt="기업 이미지">
+              <img id="com-img" th:src="${contentDetail.getCompanyImg()}" alt="기업 이미지">
             </div>
             <div class="col-lg-12">
               <label class="form-label" for="description">컨텐츠 설명</label>
@@ -78,6 +78,14 @@
               </div>
               </select>
             </div>
+
+            <div class="col-lg-12" th:each="page : ${contentDetail.contentPageList}">
+              <label th:text="${page.getPageOrder()}"></label> 페이지
+              <p th:text="${page.getDescription()}"></p>
+              <img th:src="${page.getUrl()}" th:alt="${page.getOriginalName()}">
+              tagList : <span th:text="${page.getTagList()}"></span>
+            </div>
+
           </form>
         </div>
       </main>

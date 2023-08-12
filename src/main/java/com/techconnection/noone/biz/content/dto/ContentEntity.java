@@ -54,6 +54,9 @@ public class ContentEntity extends BaseEntity {
     @Column(name = "company_img")
     private String companyImg;
 
+    @Column(name = "company_img_name")
+    private String companyImgName;
+
     @Transient
     private MultipartFile uploadFile;
 
@@ -82,6 +85,7 @@ public class ContentEntity extends BaseEntity {
         this.viewCount = model.getViewCount();
         this.companyName = model.getCompanyName();
         this.companyImg = model.getCompanyImg();
+        this.companyImgName = model.getCompanyImgName();
         this.deadLine = model.getDeadLine();
         this.shortYn = model.getShortYn();
         this.viewYn = model.getViewYn();

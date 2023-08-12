@@ -9,7 +9,8 @@ CREATE TABLE content (
     category	    varchar(20)	    NOT NULL,
     view_count	    integer     	NOT NULL	DEFAULT 0,
     company_name	varchar(50) 	NULL,
-    company_img     varchar(255)    NOT NULL,
+    company_img     varchar(255)    NOT NULL COMMENT 's3 이미지 url' ,
+    company_img_name     varchar(255)    NOT NULL COMMENT '이미지 이름',
     deadline	    datetime	    NULL,
     short_yn    	varchar(1)  	NOT NULL	DEFAULT 'N',
     view_yn	        varchar(1)  	NOT NULL	DEFAULT 'Y'	COMMENT '어드민에서 검토 후  노출 결정',
@@ -63,3 +64,11 @@ CREATE TABLE Authority (
     primary key (id),
     foreign key (email) references User(email)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='유저 권한 부여 테이블';
+
+-- 컨텐츠 조회 히스토리 테이블
+CREATE TABLE History (
+    history_id  bigint      NOT NULL auto_increment,
+    content_id  bigint      NOT NULL,
+    created_at  datetime	NOT NULL	DEFAULT current_timestamp(),
+    primary key (history_id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='컨텐츠 조회 히스토리 테이블';

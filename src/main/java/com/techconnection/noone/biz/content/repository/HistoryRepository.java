@@ -1,0 +1,27 @@
+package com.techconnection.noone.biz.content.repository;
+
+import com.techconnection.noone.biz.content.dto.ContentEntity;
+import com.techconnection.noone.biz.content.dto.HistoryEntity;
+import com.techconnection.noone.common.dao.BaseRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
+
+public interface HistoryRepository extends BaseRepository<HistoryEntity, Long> {
+
+    @Query("SELECT new HistoryEntity(h.contentId, c.title) " +
+           "FROM HistoryEntity h " +
+           "JOIN ContentEntity c ON h.contentId = c.contentId " +
+           "GROUP BY h.contentId ORDER BY count(h.contentId) desc limit 1")
+    List<HistoryEntity> countContentIdOccurrences();
+
+    @Query(nativeQuery = true, value = "SELECT h.content_id, c.title " +
+            "FROM (" +
+            "    SELECT content_id " +
+            "    FROM History " +
+            "    LIMIT 100" +
+            ") h " +
+            "JOIN content c ON h.content_id = c.content_id " +
+            "ORDER BY h.content_id")
+    List<HistoryEntity> countContentIdOccurrence1s();
+}

@@ -30,6 +30,7 @@ public class ContentModel extends BaseModel {
     private String companyName;
     private MultipartFile uploadFile;
     private String companyImg;
+    private String companyImgName;
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime deadLine;
     private String shortYn;
@@ -50,6 +51,7 @@ public class ContentModel extends BaseModel {
         this.companyName = entity.getCompanyName();
         this.uploadFile = entity.getUploadFile();
         this.companyImg = entity.getCompanyImg();
+        this.companyImgName = entity.getCompanyImgName();
         this.deadLine = entity.getDeadLine();
         this.shortYn = entity.getShortYn();
         this.viewYn = entity.getViewYn();

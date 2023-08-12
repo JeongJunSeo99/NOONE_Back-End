@@ -3,12 +3,15 @@ package com.techconnection.noone.api.content;
 import com.amazonaws.util.IOUtils;
 import com.techconnection.noone.biz.content.dto.ContentModel;
 import com.techconnection.noone.biz.content.dto.ContentPageModel;
+import com.techconnection.noone.biz.content.dto.HistoryModel;
 import com.techconnection.noone.biz.content.service.ContentService;
 import com.techconnection.noone.common.code.ResultCode;
 import com.techconnection.noone.common.controller.BaseApiController;
 import com.techconnection.noone.common.controller.BaseApiDto;
 import com.techconnection.noone.common.exception.BizException;
+import com.techconnection.noone.common.user.UserRole;
 import com.techconnection.noone.common.utils.ResponseEntityUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -19,6 +22,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Slf4j
@@ -28,6 +33,7 @@ import java.util.List;
 @RequestMapping("/api/v1/content")
 public class ContentApiController extends BaseApiController<BaseApiDto<?>> {
     private final ContentService contentService;
+    private final String BASE_UPLOAD_DIR = "content";
 
     @GetMapping(path = {"", "/"})
     public ResponseEntity<BaseApiDto<?>> findAll() {
@@ -38,25 +44,44 @@ public class ContentApiController extends BaseApiController<BaseApiDto<?>> {
             return super.fail(BaseApiDto.newBaseApiDto(), "9999", "조회 실패 : " + e.getMessage());
         }
     }
-    @GetMapping("/{contentId}")
-    public ResponseEntity<BaseApiDto<?>> detail(@PathVariable("contentId") Long id) throws Exception {
 
+    @GetMapping("/realtime")
+    public ResponseEntity<BaseApiDto<?>> findRealTime() throws Exception {
         try {
-            ContentModel contentModel = contentService.getDetail(id);
-            log.info("# api - content detail page = {}", contentModel);
-            return super.ok(new BaseApiDto<>(contentModel));
+            List<ContentModel> list = contentService.getListByViewCount(10);
+            return super.ok(new BaseApiDto<>(list));
         } catch (Exception e) {
             return super.fail(BaseApiDto.newBaseApiDto(), "9999", "조회 실패 : " + e.getMessage());
         }
     }
 
-    @GetMapping("/image/{imgUrl}")
-    public ResponseEntity<BaseApiDto<?>> getImage(@PathVariable("imgUrl") String url) throws Exception {
+    @GetMapping("/search")
+    public ResponseEntity<BaseApiDto<?>> search(@RequestParam(name = "keyword") String keyword) throws Exception {
         try {
-            InputStream stream = new FileInputStream(url);
-            byte[] bytes = IOUtils.toByteArray(stream);
-            stream.close();
-            return super.ok(new BaseApiDto<>(bytes));
+            List<ContentModel> list = contentService.search(keyword);
+            return super.ok(new BaseApiDto<>(list));
+        } catch (Exception e) {
+            return super.fail(BaseApiDto.newBaseApiDto(), "9999", "조회 실패 : " + e.getMessage());
+        }
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<BaseApiDto<?>> findUserContent(@RequestParam(name = "userId") Long userId) throws Exception {
+        try {
+            List<ContentModel> list = contentService.getListByUserId(userId);
+            return super.ok(new BaseApiDto<>(list));
+        } catch (Exception e) {
+            return super.fail(BaseApiDto.newBaseApiDto(), "9999", "조회 실패 : " + e.getMessage());
+        }
+    }
+
+    @GetMapping("/{contentId}")
+    public ResponseEntity<BaseApiDto<?>> detail(@PathVariable("contentId") Long id, HttpServletRequest request) throws Exception {
+        log.info("# api request ={}", request);
+        try {
+            ContentModel contentModel = contentService.getDetail(id);
+            log.info("# api - content detail page = {}", contentModel);
+            return super.ok(new BaseApiDto<>(contentModel));
         } catch (Exception e) {
             return super.fail(BaseApiDto.newBaseApiDto(), "9999", "조회 실패 : " + e.getMessage());
         }
@@ -69,10 +94,27 @@ public class ContentApiController extends BaseApiController<BaseApiDto<?>> {
 //            throw new BizException(ResultCode.HTTP_403.setErrMsg("저장 권한이 없습니다."));
 //        }
         try {
-            return super.ok(new BaseApiDto<>(contentService.add(model)));
+            LocalDate now = LocalDate.now();
+            String today = now.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+
+            String key = BASE_UPLOAD_DIR + "/" +  model.getUserId() +  "/" + today;
+            return super.ok(new BaseApiDto<>(contentService.add(model, key)));
         } catch (Exception e) {
             e.printStackTrace();
             return super.fail(BaseApiDto.newBaseApiDto(), "9999", "저장 실패 : " + e.getMessage());
         }
+    }
+
+    @DeleteMapping("/{contentId}")
+    public ResponseEntity<BaseApiDto<?>> delete(@PathVariable("contentId") Long contentId) throws Exception {
+//        // 관리자 권한이 있거나 본인이 올린 파일인 경우만 삭제
+//        if ( userInfo.hasRole(UserRole.SYS_ADMIN)
+//                || userInfo.hasRole(UserRole.ADMIN)
+//                || awsS3.getKey().contains(userInfo.getId())) {
+//            awsS3Service.remove(awsS3);
+//            return ResponseEntityUtil.ok();
+//        }
+        contentService.remove(contentId);
+        return ResponseEntityUtil.ok();
     }
 }
