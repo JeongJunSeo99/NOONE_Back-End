@@ -28,11 +28,6 @@ public class UserDtoReq {
             this.phone = phone;
         }
 
-        public User toUser() {
-            return User.builder()
-                    .signUpDto(this)
-                    .build();
-        }
     }
 
     @Getter
@@ -49,6 +44,15 @@ public class UserDtoReq {
             this.email = email;
             this.password = password;
         }
+
+    }
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    public static class UpdateDto{
+        private String name;
+        private String phone;
 
     }
 }

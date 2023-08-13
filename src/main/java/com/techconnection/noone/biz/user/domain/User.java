@@ -1,9 +1,11 @@
 package com.techconnection.noone.biz.user.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.techconnection.noone.biz.inquiry.domain.Inquiry;
 import com.techconnection.noone.biz.user.dto.UserDtoReq;
 import jakarta.persistence.*;
 import lombok.*;
+import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +14,8 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity(name = "User")
+@Entity(name = "user")
+@Builder
 public class User {
 
     @Id
@@ -27,27 +30,67 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
+    private String phone;
+
     private String refreshToken;
 
-    @Builder
-    public User(UserDtoReq.SignUpDto signUpDto){
-        this.email = signUpDto.getEmail();
-        this.password = signUpDto.getPassword();
-    }
+    private DateTime created_at;
+
+    private DateTime updated_at;
+
+    @Column(nullable = false)
+    private Integer point;
+
+    @Column(nullable = false)
+    private boolean userType;
 
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnore
-    //@Builder.Default
+    @Builder.Default
     private List<Authority> roles = new ArrayList<>();
+
 
 
     public void setRoles(List<Authority> role) {
         this.roles = role;
         role.forEach(o -> o.setUser(this));
     }
+/*
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnore
+    @Builder.Default
+    private List<Inquiry> inquirys = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonIgnore
+    @Builder.Default
+    private List<Inquiry> inquirys = new ArrayList<>();
+
+    public void setInquirys(List<Inquiry> inquirys) {
+        this.inquirys = inquirys;
+        inquirys.forEach(o -> o.setUser(this));
+    }
+*/
     public void setRefreshToken(String refreshToken) { // 추가!
         this.refreshToken = refreshToken;
+    }
+
+    public static User createUser(UserDtoReq.SignUpDto signUpDto, String password) {
+        final User user = User.builder()
+                .email(signUpDto.getEmail())
+                .password(password)
+                .name(signUpDto.getName())
+                .phone(signUpDto.getPhone())
+                .refreshToken(null)
+                .updated_at(null)
+                .point(0)
+                .userType(true)
+                .build();
+        return user;
     }
 }

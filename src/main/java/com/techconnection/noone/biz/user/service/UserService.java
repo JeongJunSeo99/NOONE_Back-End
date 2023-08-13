@@ -42,7 +42,11 @@ public class UserService {
 
         signUpDto.setPassword((encodedPw));
 
-        User user = signUpDto.toUser();
+        User user = User.createUser(signUpDto, encodedPw);
+
+
+
+        userRepository.save(user);
 
         user.setRoles(Collections.singletonList(Authority.builder().name("ROLE_USER").build()));
 
@@ -65,6 +69,8 @@ public class UserService {
             }
             else{
                 refreshToken = createRefreshToken(user);
+                user.setRefreshToken(refreshToken);
+                userRepository.save(user);
             }
 
             return UserDtoRes.TokenDto.builder()
@@ -82,7 +88,7 @@ public class UserService {
                 Token.builder()
                         .id(user.getId())
                         .refresh_token(UUID.randomUUID().toString())
-                        .expiration(120)
+                        .expiration(31536000) //1년
                         .build()
         );
         return token.getRefresh_token();
@@ -123,6 +129,51 @@ public class UserService {
         } else {
             throw new Exception("로그인을 해주세요");
         }
+    }
+
+    public void updateUser(UserDtoReq.UpdateDto updateDto) {
+        Optional<User> user = SecurityUtil.getCurrentUsername().flatMap(userRepository::findByEmail);
+
+        if (user == null){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "유저가 존재하지 않습니다");
+        }
+
+        String name = updateDto.getName();
+        String phone = updateDto.getPhone();
+
+        if(name == null)
+            name = user.get().getName();
+        if(phone == null)
+            phone = user.get().getPhone();
+
+        user.get().setName(name);
+        user.get().setPhone(phone);
+
+        userRepository.save(user.get());
+    }
+
+    public void deleteUser() {
+        Optional<User> user = SecurityUtil.getCurrentUsername().flatMap(userRepository::findByEmail);
+
+        if (user == null){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "유저가 존재하지 않습니다");
+        }
+
+        user.get().setUserType(false);
+
+        userRepository.save(user.get());
+    }
+
+    public UserDtoRes.UserRes getUser() {
+        Optional<User> user = SecurityUtil.getCurrentUsername().flatMap(userRepository::findByEmail);
+
+        if (user == null){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "유저가 존재하지 않습니다");
+        }
+
+        return UserDtoRes.UserRes.builder()
+                .user(user.get())
+                .build();
     }
 
 }

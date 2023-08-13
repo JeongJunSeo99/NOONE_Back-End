@@ -13,17 +13,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/v1/user")
 @CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
-
-    @GetMapping
-    public String test1() {
-        return "ok";
-    }
 
     @PostMapping("/signup")
     public ResponseEntity<Object> signup(@RequestBody UserDtoReq.SignUpDto signUpDto) throws Exception {
@@ -59,5 +54,27 @@ public class UserController {
         return new ResponseEntity<>(user.get(), HttpStatus.OK);
     }
 
+    @PutMapping()
+    public ResponseEntity<Object> updateUser(@RequestBody UserDtoReq.UpdateDto updateDto) throws Exception {
+
+        userService.updateUser(updateDto);
+
+        return new ResponseEntity<>( "회원 정보 수정 완료", HttpStatus.CREATED);
+    }
+
+    @DeleteMapping()
+    public ResponseEntity<Object> deleteUser() throws Exception {
+
+        userService.deleteUser();
+
+        return new ResponseEntity<>( "회원 탈퇴 완료", HttpStatus.CREATED);
+    }
+
+    @GetMapping()
+    @ResponseStatus(HttpStatus.OK)
+    public UserDtoRes.UserRes getUser() throws Exception {
+        return userService.getUser();
+    }
 
 }
+

@@ -47,11 +47,17 @@ CREATE TABLE tag (
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='컨텐츠 페이지 별 태그';
 
 -- 유저 테이블
-CREATE TABLE User (
+CREATE TABLE user (
     id  bigint  NOT NULL auto_increment,
     email varchar(255) NOT NULL,
     password     varchar(255) NOT NULL,
-    refreshToken varchar(255) NOT NULL,
+    refreshToken varchar(255) NULL,
+    created_at	datetime	    NULL    DEFAULT current_timestamp(),
+    updated_at	datetime	    NULL,
+    point   integer NULL,
+    name varchar(255) NOT NULL,
+    phone varchar(255) NOT NULL,
+    userType boolean NOT NULL    DEFAULT true,
     primary key (id),
     unique (email)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='유저 테이블';
@@ -62,7 +68,7 @@ CREATE TABLE Authority (
     name varchar(255) null,
     email varchar(255) not null,
     primary key (id),
-    foreign key (email) references User(email)
+    foreign key (email) references user(email) on update cascade
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='유저 권한 부여 테이블';
 
 -- 컨텐츠 조회 히스토리 테이블
@@ -72,3 +78,25 @@ CREATE TABLE History (
     created_at  datetime	NOT NULL	DEFAULT current_timestamp(),
     primary key (history_id)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='컨텐츠 조회 히스토리 테이블';
+
+-- 문의글 테이블
+CREATE TABLE inquiry (
+    id  bigint not null auto_increment,
+    title varchar(255) null,
+    description varchar(255) not null,
+    created_at	datetime	    NULL    DEFAULT current_timestamp(),
+    updated_at	datetime	    NULL,
+    isAnswer   varchar(1)  	NOT NULL	DEFAULT 'N',
+    answer  varchar(255)    NULL,
+    email varchar(255) not null,
+    primary key (id),
+    foreign key (email) references user(email) on update cascade
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='문의글 테이블';
+
+-- 토큰 테이블
+CREATE TABLE Token (
+    id  bigint not null auto_increment,
+    refresh_token varchar(255) null,
+    expiration integer not null,
+    primary key (id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='토큰 테이블';
