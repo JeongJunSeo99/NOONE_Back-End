@@ -18,15 +18,12 @@ public class InquiryDtoRes {
         private String description;
 
         private String isAnswer;
-
-        private String email;
         @Builder
-        public Res(Inquiry inquiry, String email) { // -> 파라미터 postfile 추가
+        public Res(Inquiry inquiry) { // -> 파라미터 postfile 추가
             this.inquiryId = inquiry.getId();
             this.title = inquiry.getTitle();
             this.description = inquiry.getDescription();
             this.isAnswer = inquiry.getIsAnswer();
-            this.email = email;
         }
     }
 
