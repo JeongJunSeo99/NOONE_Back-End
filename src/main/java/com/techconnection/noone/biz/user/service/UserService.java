@@ -4,6 +4,7 @@ import com.techconnection.noone.biz.user.domain.Authority;
 import com.techconnection.noone.biz.user.domain.User;
 import com.techconnection.noone.biz.user.dto.UserDtoReq;
 import com.techconnection.noone.biz.user.dto.UserDtoRes;
+import com.techconnection.noone.biz.user.repository.AuthorityRepository;
 import com.techconnection.noone.biz.user.repository.UserRepository;
 import com.techconnection.noone.common.security.JwtProvider;
 import com.techconnection.noone.common.security.SecurityUtil;
@@ -27,6 +28,8 @@ import java.util.UUID;
 public class UserService {
     private final UserRepository userRepository;
 
+    private final AuthorityRepository authorityRepository;
+
     private final PasswordEncoder passwordEncoder;
 
     private final TokenRepository tokenRepository;
@@ -44,13 +47,9 @@ public class UserService {
 
         User user = User.createUser(signUpDto, encodedPw);
 
-
-
         userRepository.save(user);
 
-        user.setRoles(Collections.singletonList(Authority.builder().name("ROLE_USER").build()));
 
-        userRepository.save(user);
     }
 
     public UserDtoRes.TokenDto login(UserDtoReq.LoginDto loginDto) {
@@ -61,6 +60,8 @@ public class UserService {
         }
 
         User user = findUser.get();
+
+
         if (passwordEncoder.matches(loginDto.getPassword(), user.getPassword())) { // 비밀번호 일치
             String refreshToken;
 
@@ -72,7 +73,13 @@ public class UserService {
                 user.setRefreshToken(refreshToken);
                 userRepository.save(user);
             }
+/*
+            Authority authority = Authority.createAuthority(user);
+            //user.setRoles(Collections.singletonList(Authority.builder().name("ROLE_USER").build()));
 
+            authorityRepository.save(authority);
+
+ */
             return UserDtoRes.TokenDto.builder()
                     .access_token(jwtProvider.createToken(user.getEmail(), user.getRoles()))
                     .refresh_token(refreshToken)

@@ -60,6 +60,7 @@ public class User {
         this.roles = role;
         role.forEach(o -> o.setUser(this));
     }
+
 /*
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnore

@@ -1,6 +1,7 @@
 package com.techconnection.noone.biz.user.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.techconnection.noone.biz.user.dto.UserDtoReq;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,5 +25,13 @@ public class Authority {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public static Authority createAuthority(User user) {
+        final Authority authority = Authority.builder()
+                .name("ROLE_USER")
+                .user(user)
+                .build();
+        return authority;
     }
 }

@@ -58,6 +58,23 @@ public class InquiryService {
 
     }
 
+    public List<InquiryDtoRes.Res> getUserInquiry() {
+        Optional<User> user = SecurityUtil.getCurrentUsername().flatMap(userRepository::findByEmail);
+        System.out.println(user.get().getEmail());
+        List<InquiryDtoRes.Res> a = new ArrayList<>();
+
+        List<Inquiry> inquiries = inquiryRepository.findAllByEmail(user.get().getEmail());
+        System.out.println(inquiries);
+        for (Inquiry inquiry : inquiries) {
+            a.add(InquiryDtoRes.Res.builder()
+                    .inquiry(inquiry)
+                    .build());
+        }
+
+        return a;
+
+    }
+
     public InquiryDtoRes.Detail getInquiryDetail(Long inquiryId) {
         Optional<User> user = SecurityUtil.getCurrentUsername().flatMap(userRepository::findByEmail);
 
