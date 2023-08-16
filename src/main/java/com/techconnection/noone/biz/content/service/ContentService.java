@@ -143,7 +143,7 @@ public class ContentService extends BaseServiceImplWithJpa<ContentModel, Content
                 //기존 페이지 수정
                 if (contentPageEntity.getPageId() != null) {
                     ContentPageEntity contentPage = contentPageRepository.findById(contentPageEntity.getPageId())
-                            .orElseThrow(()-> new IllegalArgumentException("해당 페이지가 없습니다. id="+ contentPageEntity.getPageId()));
+                            .orElseThrow(()-> new IllegalArgumentException("해당 페이지가 없습니다. pageId="+ contentPageEntity.getPageId()));
                     if (!Objects.equals(contentPageEntity.getPageId(), contentPage.getPageId())) {
                         throw new IOException("잘못된 페이지 아이디입니다.");
                     }

@@ -11,6 +11,7 @@
     <div class="row" id="contentDetail">
       <main>
         <div class="card-body bg-light">
+          <button class="btn btn-primary" th:onclick="|setViewAndAddPoint('${contentDetail.contentId}')|">컨텐츠 노출 및 포인트 지급</button>
           <form class="row g-3" th:action="@{/cms/content/modify}" th:object="${contentDetail}" th:field="*{contentId}" method="POST">
             <input type="hidden" th:field="*{contentId}" id="contentId">
             <input type="hidden" th:field="*{viewCount}" id="viewCount">
@@ -46,7 +47,7 @@
             </div>
             <div class="col-lg-4">
               <label for="com-img">회사 이미지</label>
-              <img id="com-img" th:src="${contentDetail.getCompanyImg()}" alt="기업 이미지">
+              <img class="img-fluid" id="com-img" th:src="${contentDetail.getCompanyImg()}" alt="기업 이미지">
             </div>
             <div class="col-lg-12">
               <label class="form-label" for="description">컨텐츠 설명</label>
@@ -83,10 +84,10 @@
             </div>
 
           </form>
-          <div class="col-lg-12" th:each="page : ${contentDetail.contentPageList}">
-            <label th:text="${page.getPageOrder()}"></label> 페이지
+          <div class="col-lg-12 g-3" th:each="page : ${contentDetail.contentPageList}">
+            <label th:text="${page.getPageOrder()}"></label> 페이지 || pageId : <span th:text="${page.getPageId()}"></span>
             <p th:text="${page.getDescription()}"></p>
-            <img th:src="${page.getUrl()}" th:alt="${page.getOriginalName()}">
+            <img class="img-fluid" th:src="${page.getUrl()}" th:alt="${page.getOriginalName()}">
             tagList : <span th:text="${page.getTagList()}"></span>
           </div>
         </div>
@@ -98,5 +99,9 @@
 </html>
 
 <script type="text/javascript">
-
+    function setViewAndAddPoint(contentId) {
+        alert(contentId);
+        fetch("http://13.209.49.229:8080/api/v1/point/" + contentId, {method: "POST"})
+            .then((res) => {console.log(res)});
+    }
 </script>
