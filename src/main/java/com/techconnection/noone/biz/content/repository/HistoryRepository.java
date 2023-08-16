@@ -15,13 +15,13 @@ public interface HistoryRepository extends BaseRepository<HistoryEntity, Long> {
            "GROUP BY h.contentId ORDER BY count(h.contentId) desc limit 1")
     List<HistoryEntity> countContentIdOccurrences();
 
-    @Query(nativeQuery = true, value = "SELECT h.content_id, c.title " +
+    @Query(nativeQuery = true, value = "SELECT h.content_id as contentId, c.title as title " +
             "FROM (" +
             "    SELECT content_id " +
             "    FROM History " +
             "    LIMIT 100" +
             ") h " +
             "JOIN content c ON h.content_id = c.content_id " +
-            "ORDER BY h.content_id")
-    List<HistoryEntity> countContentIdOccurrence1s();
+            "GROUP BY h.content_id ORDER BY count(h.content_id) desc")
+    List<HistoryEntityInterface> countContentIdOccurrence1s();
 }

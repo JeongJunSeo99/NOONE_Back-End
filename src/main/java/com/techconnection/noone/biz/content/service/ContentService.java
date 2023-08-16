@@ -16,12 +16,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Stream;
 
 @Slf4j
@@ -62,9 +60,9 @@ public class ContentService extends BaseServiceImplWithJpa<ContentModel, Content
         return repository.findByViewYn("Y", sort).stream().map(ContentModel::new).toList();
     }
 
-    public List<ContentModel> getListByViewCount(int pagePerCnt) throws Exception {
-        return repository.findAllByOrderByViewCountDesc().stream().map(ContentModel::new).toList();
-//        return historyRepository.countContentIdOccurrence1s().stream().map(HistoryModel::new).toList();
+    public List<HistoryModel> getListByViewCount(int pagePerCnt) throws Exception {
+//        return repository.findAllByOrderByViewCountDesc().stream().map(ContentModel::new).toList();
+        return historyRepository.countContentIdOccurrence1s().stream().map(HistoryModel::new).toList();
     }
 
     public List<ContentModel> search(String keyword) throws Exception {
@@ -85,15 +83,20 @@ public class ContentService extends BaseServiceImplWithJpa<ContentModel, Content
         return super.getDetail(pk);
     }
 
+
+    public ContentModel getDetailAdmin(Long pk) throws Exception {
+//        // 조회수 증가 (쿠키 또는 세션으로 체크?
+//        repository.updateViewCount(pk);
+//        // 히스토리 저장
+//        historyRepository.save(new HistoryEntity(pk));
+        return super.getDetail(pk);
+    }
+
     @Transactional
     public ContentModel add(ContentModel model, String dirName) throws Exception {
         ContentEntity contentEntity = model.toEntity();
         List<ContentPageEntity> contentPageEntityList = new ArrayList<>();
 
-        AwsS3Dto awsS3Dto = awsS3Service.upload(model.getUploadFile(), dirName);
-        contentEntity.setCompanyImg(awsS3Dto.getPath());
-        contentEntity.setCompanyImgName(awsS3Dto.getKey());
-//        contentEntity.setCompanyImg(storageService.store(model.getUploadFile(), model.getUserId()));
 
         //페이지 저장 루프
         for (ContentPageEntity contentPageEntity : contentEntity.getContentPageEntityList()) {
@@ -104,25 +107,80 @@ public class ContentService extends BaseServiceImplWithJpa<ContentModel, Content
             contentPageEntity.setUrl(awsS3Dto1.getPath());
             contentPageEntity.setOriginalName(awsS3Dto1.getKey());
             contentPageEntity.setSize(contentPageEntity.getUploadFile().getSize());
-            //저장된 파일 경로 -> contentPageEntity.setUrl();
 
-//            List<TagEntity> tagEntityList = new ArrayList<>();
-            // 태그 저장 루프 -> 변경: 태그를 페이지에 스트링으로 저장
-//            for (TagEntity tagEntity : contentPageEntity.getTagEntityList()) {
-////                contentPageEntity.getTagEntityList().add(tagEntity);
-//                tagEntityList.add(tagEntity);
-//                tagEntity.setContentPageEntity(contentPageEntity);
-//            }
-//            contentPageEntity.getTagEntityList().addAll(tagEntityList);
-
-//            contentEntity.getContentPageEntityList().add(contentPageEntity);
             contentPageEntityList.add(contentPageEntity);
             contentPageEntity.setContentEntity(contentEntity);
         }
+
+        AwsS3Dto awsS3Dto = awsS3Service.upload(model.getUploadFile(), dirName);
+        contentEntity.setCompanyImg(awsS3Dto.getPath());
+        contentEntity.setCompanyImgName(awsS3Dto.getKey());
+
         contentEntity.getContentPageEntityList().addAll(contentPageEntityList);
 
         repository.save(contentEntity);
         return new ContentModel();
+    }
+
+    @Transactional
+    public void modifyContent(ContentModel model, String dirName) throws Exception {
+        ContentEntity content = repository.findById(model.getContentId())
+                .orElseThrow(()-> new IllegalArgumentException("해당 게시글이 없습니다. id="+ model.getContentId()));
+
+        ContentEntity contentEntity = model.toEntity();
+        contentEntity.setViewYn(content.getViewYn());
+        contentEntity.setViewCount(content.getViewCount());
+        List<ContentPageEntity> contentPageEntityList = new ArrayList<>();
+
+        //페이지 저장 루프
+        for (ContentPageEntity contentPageEntity : contentEntity.getContentPageEntityList()) {
+            log.info("In add ContentPage Loop : contentPageEntity = {}", contentPageEntity);
+            //기존 페이지 수정
+            if (contentPageEntity.getPageId() != null) {
+                ContentPageEntity contentPage = contentPageRepository.findById(contentPageEntity.getPageId())
+                        .orElseThrow(()-> new IllegalArgumentException("해당 페이지가 없습니다. id="+ contentPageEntity.getPageId()));
+                if (!Objects.equals(contentPageEntity.getPageId(), contentPage.getPageId())) {
+                    throw new IOException("잘못된 페이지 아이디입니다.");
+                }
+                //페이지 이미지 업로드 파일이 있으면 지우고 새로 만듦
+                if (contentPageEntity.getUploadFile() != null) {
+                    awsS3Service.remove(new AwsS3Dto(contentPage.getOriginalName(), ""));
+
+                    AwsS3Dto awsS3Dto1 = awsS3Service.upload(contentPageEntity.getUploadFile(), dirName);
+                    contentPageEntity.setUrl(awsS3Dto1.getPath());
+                    contentPageEntity.setOriginalName(awsS3Dto1.getKey());
+                    contentPageEntity.setSize(contentPageEntity.getUploadFile().getSize());
+                } else {
+                    contentPageEntity.setUrl(contentPage.getUrl());
+                    contentPageEntity.setOriginalName(contentPage.getOriginalName());
+                    contentPageEntity.setSize(contentPage.getSize());
+                }
+            } else {
+                //새로운 페이지 생성
+                AwsS3Dto awsS3Dto1 = awsS3Service.upload(contentPageEntity.getUploadFile(), dirName);
+                contentPageEntity.setUrl(awsS3Dto1.getPath());
+                contentPageEntity.setOriginalName(awsS3Dto1.getKey());
+                contentPageEntity.setSize(contentPageEntity.getUploadFile().getSize());
+            }
+
+            contentPageEntityList.add(contentPageEntity);
+            contentPageEntity.setContentEntity(contentEntity);
+        }
+
+        //회사 이미지 업로드 파일이 있으면 지우고 새로 만듦
+        if (model.getUploadFile() != null) {
+            awsS3Service.remove(new AwsS3Dto(content.getCompanyImgName(), ""));
+            AwsS3Dto awsS3Dto = awsS3Service.upload(model.getUploadFile(), dirName);
+            contentEntity.setCompanyImg(awsS3Dto.getPath());
+            contentEntity.setCompanyImgName(awsS3Dto.getKey());
+        } else {
+            contentEntity.setCompanyImg(content.getCompanyImg());
+            contentEntity.setCompanyImgName(content.getCompanyImgName());
+        }
+
+        contentEntity.getContentPageEntityList().addAll(contentPageEntityList);
+
+        repository.save(contentEntity);
     }
 
     @Override

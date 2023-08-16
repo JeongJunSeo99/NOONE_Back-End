@@ -11,11 +11,14 @@
     <div class="row" id="contentDetail">
       <main>
         <div class="card-body bg-light">
-          <form class="row g-3" th:action="@{/content/modify}" th:object="${contentDetail}" th:field="*{contentId}" method="POST">
+          <form class="row g-3" th:action="@{/cms/content/modify}" th:object="${contentDetail}" th:field="*{contentId}" method="POST">
             <input type="hidden" th:field="*{contentId}" id="contentId">
             <input type="hidden" th:field="*{viewCount}" id="viewCount">
+            <input type="hidden" th:field="*{companyImg}" id="companyImg">
+            <input type="hidden" th:field="*{companyImgName}" id="companyImgName">
+            <input type="hidden" th:field="*{contentPageList}" id="contentPageList">
             <div class="col-12 d-flex justify-content-end">
-              <button class="btn btn-primary" type="submit">수정하기 </button>
+<!--              <button class="btn btn-primary" type="submit">수정하기 </button>-->
             </div>
             <div class="col-lg-8">
               <div class="row g-3">
@@ -79,14 +82,13 @@
               </select>
             </div>
 
-            <div class="col-lg-12" th:each="page : ${contentDetail.contentPageList}">
-              <label th:text="${page.getPageOrder()}"></label> 페이지
-              <p th:text="${page.getDescription()}"></p>
-              <img th:src="${page.getUrl()}" th:alt="${page.getOriginalName()}">
-              tagList : <span th:text="${page.getTagList()}"></span>
-            </div>
-
           </form>
+          <div class="col-lg-12" th:each="page : ${contentDetail.contentPageList}">
+            <label th:text="${page.getPageOrder()}"></label> 페이지
+            <p th:text="${page.getDescription()}"></p>
+            <img th:src="${page.getUrl()}" th:alt="${page.getOriginalName()}">
+            tagList : <span th:text="${page.getTagList()}"></span>
+          </div>
         </div>
       </main>
     </div>

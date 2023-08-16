@@ -7,10 +7,13 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -21,7 +24,7 @@ import java.util.Map;
 @RequestMapping("/cms/content")
 public class ContentController {
     private final ContentService contentService;
-
+    private final String BASE_UPLOAD_DIR = "content";
     @ModelAttribute("ynMap")
     public Map<String, String> ynCd() {
         Map<String, String> map = new LinkedHashMap<>();
@@ -40,16 +43,20 @@ public class ContentController {
 
     @GetMapping("/{contentId}")
     public String detail(@PathVariable("contentId") Long id, Model model) throws Exception {
-        ContentModel contentModel = contentService.getDetail(id);
+        ContentModel contentModel = contentService.getDetailAdmin(id);
         log.info("# content detail page = {}", contentModel);
         model.addAttribute("contentDetail", contentModel);
         return "noone/content/detail";
     }
 
-    @PostMapping("/modify")
+    @PostMapping(path = "/modify", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
     public String modify(@ModelAttribute ContentModel contentDetail) throws Exception {
         log.info("# Content modify = {}", contentDetail);
-        contentService.modify(contentDetail);
-        return "redirect:/content";
+        LocalDate now = LocalDate.now();
+        String today = now.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+
+        String key = BASE_UPLOAD_DIR + "/" +  contentDetail.getUserId() +  "/" + today;
+        contentService.modifyContent(contentDetail, key);
+        return "redirect:/cms/content";
     }
 }

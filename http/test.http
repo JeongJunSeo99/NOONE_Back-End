@@ -7,6 +7,10 @@ GET {{host}}/content/1
 ### 이미지 조회
 GET {{host}}/content/image/url
 
+
+### 삭제
+DELETE {{host}}/content/5
+
 ### 컨텐츠 등록
 POST {{host}}/content
 Accept: application/json

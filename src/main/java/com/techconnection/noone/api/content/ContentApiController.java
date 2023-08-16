@@ -3,6 +3,7 @@ package com.techconnection.noone.api.content;
 import com.amazonaws.util.IOUtils;
 import com.techconnection.noone.biz.content.dto.ContentModel;
 import com.techconnection.noone.biz.content.dto.ContentPageModel;
+import com.techconnection.noone.biz.content.dto.HistoryEntity;
 import com.techconnection.noone.biz.content.dto.HistoryModel;
 import com.techconnection.noone.biz.content.service.ContentService;
 import com.techconnection.noone.common.code.ResultCode;
@@ -48,7 +49,7 @@ public class ContentApiController extends BaseApiController<BaseApiDto<?>> {
     @GetMapping("/realtime")
     public ResponseEntity<BaseApiDto<?>> findRealTime() throws Exception {
         try {
-            List<ContentModel> list = contentService.getListByViewCount(10);
+            List<HistoryModel> list = contentService.getListByViewCount(10);
             return super.ok(new BaseApiDto<>(list));
         } catch (Exception e) {
             return super.fail(BaseApiDto.newBaseApiDto(), "9999", "조회 실패 : " + e.getMessage());
@@ -98,10 +99,27 @@ public class ContentApiController extends BaseApiController<BaseApiDto<?>> {
             String today = now.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 
             String key = BASE_UPLOAD_DIR + "/" +  model.getUserId() +  "/" + today;
-            return super.ok(new BaseApiDto<>(contentService.add(model, key)));
+            contentService.add(model, key);
+            return ResponseEntityUtil.ok();
         } catch (Exception e) {
             e.printStackTrace();
             return super.fail(BaseApiDto.newBaseApiDto(), "9999", "저장 실패 : " + e.getMessage());
+        }
+    }
+
+    @PostMapping(path = "/modify", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
+    public ResponseEntity<BaseApiDto<?>> modify(@ModelAttribute ContentModel contentDetail) throws Exception {
+        try {
+            log.info("# Content modify API = {}", contentDetail);
+            LocalDate now = LocalDate.now();
+            String today = now.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+
+            String key = BASE_UPLOAD_DIR + "/" +  contentDetail.getUserId() +  "/" + today;
+            contentService.modifyContent(contentDetail, key);
+            return ResponseEntityUtil.ok();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return super.fail(BaseApiDto.newBaseApiDto(), "9999", "컨텐츠 수정 실패 : " + e.getMessage());
         }
     }
 

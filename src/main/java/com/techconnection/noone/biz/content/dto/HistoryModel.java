@@ -1,5 +1,6 @@
 package com.techconnection.noone.biz.content.dto;
 
+import com.techconnection.noone.biz.content.repository.HistoryEntityInterface;
 import com.techconnection.noone.common.dto.BaseModel;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +25,11 @@ public class HistoryModel extends BaseModel {
         this.contentId = entity.getContentId();
         this.title = entity.getTitle();
         this.createdAt = entity.getCreatedAt();
+    }
+
+    public HistoryModel(HistoryEntityInterface entityInterface) {
+        this.contentId = entityInterface.getContentId();
+        this.title = entityInterface.getTitle();
     }
 
 
