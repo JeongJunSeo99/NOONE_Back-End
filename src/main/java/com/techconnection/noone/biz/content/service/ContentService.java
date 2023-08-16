@@ -124,63 +124,88 @@ public class ContentService extends BaseServiceImplWithJpa<ContentModel, Content
 
     @Transactional
     public void modifyContent(ContentModel model, String dirName) throws Exception {
-        ContentEntity content = repository.findById(model.getContentId())
-                .orElseThrow(()-> new IllegalArgumentException("해당 게시글이 없습니다. id="+ model.getContentId()));
+        //업로드 된 파일 이름 -- 롤백용
+        List<String> uploadedFileName = new ArrayList<>();
+        //제거할 파일 이름
+        List<String> deleteFileName = new ArrayList<>();
+        try {
+            ContentEntity content = repository.findById(model.getContentId())
+                    .orElseThrow(()-> new IllegalArgumentException("해당 게시글이 없습니다. id="+ model.getContentId()));
 
-        ContentEntity contentEntity = model.toEntity();
-        contentEntity.setViewYn(content.getViewYn());
-        contentEntity.setViewCount(content.getViewCount());
-        List<ContentPageEntity> contentPageEntityList = new ArrayList<>();
+            ContentEntity contentEntity = model.toEntity();
+            contentEntity.setViewYn(content.getViewYn());
+            contentEntity.setViewCount(content.getViewCount());
+            List<ContentPageEntity> contentPageEntityList = new ArrayList<>();
 
-        //페이지 저장 루프
-        for (ContentPageEntity contentPageEntity : contentEntity.getContentPageEntityList()) {
-            log.info("In add ContentPage Loop : contentPageEntity = {}", contentPageEntity);
-            //기존 페이지 수정
-            if (contentPageEntity.getPageId() != null) {
-                ContentPageEntity contentPage = contentPageRepository.findById(contentPageEntity.getPageId())
-                        .orElseThrow(()-> new IllegalArgumentException("해당 페이지가 없습니다. id="+ contentPageEntity.getPageId()));
-                if (!Objects.equals(contentPageEntity.getPageId(), contentPage.getPageId())) {
-                    throw new IOException("잘못된 페이지 아이디입니다.");
-                }
-                //페이지 이미지 업로드 파일이 있으면 지우고 새로 만듦
-                if (contentPageEntity.getUploadFile() != null) {
-                    awsS3Service.remove(new AwsS3Dto(contentPage.getOriginalName(), ""));
-
+            //페이지 저장 루프
+            for (ContentPageEntity contentPageEntity : contentEntity.getContentPageEntityList()) {
+                log.info("In add ContentPage Loop : contentPageEntity = {}", contentPageEntity);
+                //기존 페이지 수정
+                if (contentPageEntity.getPageId() != null) {
+                    ContentPageEntity contentPage = contentPageRepository.findById(contentPageEntity.getPageId())
+                            .orElseThrow(()-> new IllegalArgumentException("해당 페이지가 없습니다. id="+ contentPageEntity.getPageId()));
+                    if (!Objects.equals(contentPageEntity.getPageId(), contentPage.getPageId())) {
+                        throw new IOException("잘못된 페이지 아이디입니다.");
+                    }
+                    //페이지 이미지 업로드 파일이 있으면 지우고 새로 만듦
+                    if (contentPageEntity.getUploadFile() != null) {
+                        //이전 데이터 저장
+                        deleteFileName.add(contentPage.getOriginalName());
+                        
+                        AwsS3Dto awsS3Dto1 = awsS3Service.upload(contentPageEntity.getUploadFile(), dirName);
+                        contentPageEntity.setUrl(awsS3Dto1.getPath());
+                        contentPageEntity.setOriginalName(awsS3Dto1.getKey());
+                        contentPageEntity.setSize(contentPageEntity.getUploadFile().getSize());
+                        uploadedFileName.add(awsS3Dto1.getKey());
+                    } else {
+                        contentPageEntity.setUrl(contentPage.getUrl());
+                        contentPageEntity.setOriginalName(contentPage.getOriginalName());
+                        contentPageEntity.setSize(contentPage.getSize());
+                    }
+                } else {
+                    //새로운 페이지 생성
                     AwsS3Dto awsS3Dto1 = awsS3Service.upload(contentPageEntity.getUploadFile(), dirName);
                     contentPageEntity.setUrl(awsS3Dto1.getPath());
                     contentPageEntity.setOriginalName(awsS3Dto1.getKey());
                     contentPageEntity.setSize(contentPageEntity.getUploadFile().getSize());
-                } else {
-                    contentPageEntity.setUrl(contentPage.getUrl());
-                    contentPageEntity.setOriginalName(contentPage.getOriginalName());
-                    contentPageEntity.setSize(contentPage.getSize());
+                    uploadedFileName.add(awsS3Dto1.getKey());
                 }
-            } else {
-                //새로운 페이지 생성
-                AwsS3Dto awsS3Dto1 = awsS3Service.upload(contentPageEntity.getUploadFile(), dirName);
-                contentPageEntity.setUrl(awsS3Dto1.getPath());
-                contentPageEntity.setOriginalName(awsS3Dto1.getKey());
-                contentPageEntity.setSize(contentPageEntity.getUploadFile().getSize());
+
+                contentPageEntityList.add(contentPageEntity);
+                contentPageEntity.setContentEntity(contentEntity);
             }
 
-            contentPageEntityList.add(contentPageEntity);
-            contentPageEntity.setContentEntity(contentEntity);
+            //회사 이미지 업로드 파일이 있으면 지우고 새로 만듦
+            if (model.getUploadFile() != null) {
+                deleteFileName.add(content.getCompanyImgName());
+
+                AwsS3Dto awsS3Dto = awsS3Service.upload(model.getUploadFile(), dirName);
+                contentEntity.setCompanyImg(awsS3Dto.getPath());
+                contentEntity.setCompanyImgName(awsS3Dto.getKey());
+                uploadedFileName.add(awsS3Dto.getKey());
+            } else {
+                contentEntity.setCompanyImg(content.getCompanyImg());
+                contentEntity.setCompanyImgName(content.getCompanyImgName());
+            }
+
+            contentEntity.getContentPageEntityList().addAll(contentPageEntityList);
+
+            repository.save(contentEntity);
+            log.info("저장 완료 : 지울 파일 목록 = {}", deleteFileName);
+            // 문제 없이 전부 수정 후 이전 파일 제거
+            for (String fileName : deleteFileName) {
+                awsS3Service.remove(new AwsS3Dto(fileName, ""));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            //에러 발생 시 업로드 된 이미지 전부 제거
+            log.info("에러 발생 : 업로드 된 파일 롤백 = {}", uploadedFileName);
+            for (String fileName : uploadedFileName) {
+                awsS3Service.remove(new AwsS3Dto(fileName, ""));
+            }
+            throw new Exception(e.getMessage());
         }
-
-        //회사 이미지 업로드 파일이 있으면 지우고 새로 만듦
-        if (model.getUploadFile() != null) {
-            awsS3Service.remove(new AwsS3Dto(content.getCompanyImgName(), ""));
-            AwsS3Dto awsS3Dto = awsS3Service.upload(model.getUploadFile(), dirName);
-            contentEntity.setCompanyImg(awsS3Dto.getPath());
-            contentEntity.setCompanyImgName(awsS3Dto.getKey());
-        } else {
-            contentEntity.setCompanyImg(content.getCompanyImg());
-            contentEntity.setCompanyImgName(content.getCompanyImgName());
-        }
-
-        contentEntity.getContentPageEntityList().addAll(contentPageEntityList);
-
-        repository.save(contentEntity);
     }
 
     @Override
