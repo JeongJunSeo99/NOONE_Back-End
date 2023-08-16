@@ -84,6 +84,8 @@ public class UserService {
                     .access_token(jwtProvider.createToken(user.getEmail(), user.getRoles()))
                     .refresh_token(refreshToken)
                     .name(user.getName())
+                    .email(user.getEmail())
+                    .userId(user.getId())
                     .build();
         }
 

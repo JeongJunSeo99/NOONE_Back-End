@@ -13,6 +13,8 @@ public class UserDtoRes {
         private String access_token;
         private String refresh_token;
         private String name;
+        private String email;
+        private Long userId;
     }
 
     @Getter

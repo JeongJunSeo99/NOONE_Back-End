@@ -59,7 +59,7 @@ public class UserController {
 
         userService.updateUser(updateDto);
 
-        return new ResponseEntity<>( "회원 정보 수정 완료", HttpStatus.CREATED);
+        return new ResponseEntity<>( "회원 정보 수정 완료", HttpStatus.OK);
     }
 
     @DeleteMapping()
@@ -67,7 +67,7 @@ public class UserController {
 
         userService.deleteUser();
 
-        return new ResponseEntity<>( "회원 탈퇴 완료", HttpStatus.CREATED);
+        return new ResponseEntity<>( "회원 탈퇴 완료", HttpStatus.OK);
     }
 
     @GetMapping()

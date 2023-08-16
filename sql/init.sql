@@ -108,3 +108,15 @@ CREATE TABLE phone (
     cer varchar(255) not null,
     primary key (id)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='핸드폰 인증 테이블';
+
+-- 포인트 테이블
+CREATE TABLE point (
+    id  bigint not null auto_increment,
+    price Integer not null,
+    description varchar(255) not null,
+    created_at	datetime	    NULL    DEFAULT current_timestamp(),
+    updated_at	datetime	    NULL,
+    email varchar(255) not null,
+    primary key (id),
+    foreign key (email) references user(email) on update cascade
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='포인트 기록 테이블';
