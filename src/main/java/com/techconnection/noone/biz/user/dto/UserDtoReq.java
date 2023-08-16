@@ -31,6 +31,19 @@ public class UserDtoReq {
     }
 
     @Getter
+    public static class PhoneDto{
+        private String phone;
+
+    }
+
+    @Getter
+    public static class PhoneCheckDto{
+        private String phone;
+        private String cer;
+
+    }
+
+    @Getter
     @Setter
     @NoArgsConstructor
     public static class LoginDto{

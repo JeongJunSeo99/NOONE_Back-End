@@ -12,6 +12,7 @@ public class UserDtoRes {
     public static class TokenDto {
         private String access_token;
         private String refresh_token;
+        private String name;
     }
 
     @Getter

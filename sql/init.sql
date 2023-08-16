@@ -100,3 +100,11 @@ CREATE TABLE Token (
     expiration integer not null,
     primary key (id)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='토큰 테이블';
+
+-- 핸드폰 인증 테이블
+CREATE TABLE phone (
+    id  bigint not null auto_increment,
+    number varchar(255) null,
+    cer varchar(255) not null,
+    primary key (id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COMMENT ='핸드폰 인증 테이블';

@@ -83,6 +83,7 @@ public class UserService {
             return UserDtoRes.TokenDto.builder()
                     .access_token(jwtProvider.createToken(user.getEmail(), user.getRoles()))
                     .refresh_token(refreshToken)
+                    .name(user.getName())
                     .build();
         }
 
