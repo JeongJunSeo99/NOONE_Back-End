@@ -22,4 +22,12 @@ public class InquiryDtoReq {
             }
 
         }
+
+    @Getter
+    @Setter
+    @ToString
+    public static class answerDto{
+        private String answer;
+
+    }
 }

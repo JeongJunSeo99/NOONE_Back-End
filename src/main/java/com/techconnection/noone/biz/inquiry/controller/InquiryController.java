@@ -50,6 +50,13 @@ public class InquiryController {
         return inquiryService.getInquiryDetail(inquiryId);
     }
 
+    @PostMapping("/{inquiryId}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Object> answer(@PathVariable Long inquiryId, @RequestBody InquiryDtoReq.answerDto answerDto) {
+        inquiryService.answer(inquiryId,answerDto);
+        return new ResponseEntity<>( "답변 작성 완료", HttpStatus.OK);
+    }
+
 
 
 }

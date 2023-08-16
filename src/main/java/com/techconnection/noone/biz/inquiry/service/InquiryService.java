@@ -85,5 +85,16 @@ public class InquiryService {
                 .build();
     }
 
+    public void answer(Long inquiryId, InquiryDtoReq.answerDto answerDto) {
+        Optional<User> user = SecurityUtil.getCurrentUsername().flatMap(userRepository::findByEmail);
+
+        Optional<Inquiry> inquiry = inquiryRepository.findById(inquiryId);
+
+        inquiry.get().setAnswer(answerDto.getAnswer());
+        inquiry.get().setIsAnswer("Y");
+
+        inquiryRepository.save(inquiry.get());
+    }
+
 
 }
