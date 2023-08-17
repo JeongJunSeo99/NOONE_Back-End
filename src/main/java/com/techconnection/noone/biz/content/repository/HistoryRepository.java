@@ -19,7 +19,7 @@ public interface HistoryRepository extends BaseRepository<HistoryEntity, Long> {
             "FROM (" +
             "    SELECT content_id " +
             "    FROM History " +
-            "    LIMIT 100" +
+            "    ORDER BY created_at DESC LIMIT 100" +
             ") h " +
             "JOIN content c ON h.content_id = c.content_id " +
             "GROUP BY h.content_id ORDER BY count(h.content_id) desc")
