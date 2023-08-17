@@ -51,6 +51,10 @@ public class PointService {
         try {
             Optional<User> user = SecurityUtil.getCurrentUsername().flatMap(userRepository::findByEmail);
 
+            if (dto.getPrice() < 0 && user.get().getPoint() < (dto.getPrice() * -1)) {
+                throw new Exception("보유 포인트가 부족합니다.");
+            }
+
             user.get().setPoint(user.get().getPoint() + dto.getPrice());
             userRepository.save(user.get());
 
