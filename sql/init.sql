@@ -113,6 +113,7 @@ CREATE TABLE phone (
 CREATE TABLE point (
     id  bigint not null auto_increment,
     price Integer not null,
+    trade_cd varchar(20) not null COMMENT '적립(EARN), 사용(USE)',
     description varchar(255) not null,
     created_at	datetime	    NULL    DEFAULT current_timestamp(),
     updated_at	datetime	    NULL,

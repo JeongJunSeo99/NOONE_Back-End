@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface InquiryRepository extends JpaRepository<Inquiry, Long> {
     List<Inquiry> findAllByEmail(String email);
+
+
 }

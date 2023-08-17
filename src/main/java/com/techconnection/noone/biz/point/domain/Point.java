@@ -1,6 +1,7 @@
 package com.techconnection.noone.biz.point.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.techconnection.noone.biz.point.dto.PointRes;
 import com.techconnection.noone.biz.user.domain.User;
 import com.techconnection.noone.biz.user.dto.UserDtoReq;
 import jakarta.persistence.*;
@@ -22,6 +23,9 @@ public class Point {
     @Column(nullable = false)
     private Integer price;
 
+    @Column(name = "trade_cd", nullable = false)
+    private String tradeCd;
+
     @Column(nullable = false)
     private String description;
 
@@ -32,12 +36,15 @@ public class Point {
     @Column(nullable = false)
     private String email;
 
-    public static Point createPoint(Integer price, String des, String email) {
+    public static Point createPoint(Integer price, String tradeCd, String des, String email) {
         final Point point = Point.builder()
                 .price(price)
+                .tradeCd(tradeCd)
                 .description(des)
                 .email(email)
                 .build();
         return point;
     }
+
+
 }
