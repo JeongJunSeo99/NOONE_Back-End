@@ -16,7 +16,7 @@ public interface ContentRepository extends BaseRepository<ContentEntity, Long> {
 
     List<ContentEntityInterface> findAllByOrderByViewCountDesc();
 
-    List<ContentEntityInterface> findAllByTitleContainingOrDescriptionContaining(String keyword, String keyword2);
+    List<ContentEntityInterface> findAllByTitleContainingOrDescriptionContaining(String keyword, String keyword2, Sort sort);
 
     List<ContentEntityInterface> findByUserId(Long userId);
 

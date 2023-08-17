@@ -66,7 +66,8 @@ public class ContentService extends BaseServiceImplWithJpa<ContentModel, Content
     }
 
     public List<ContentModel> search(String keyword) throws Exception {
-        return repository.findAllByTitleContainingOrDescriptionContaining(keyword, keyword).stream().map(ContentModel::new).toList();
+        Sort sort = Sort.by(Sort.Order.desc("shortYn"));
+        return repository.findAllByTitleContainingOrDescriptionContaining(keyword, keyword, sort).stream().map(ContentModel::new).toList();
     }
 
     public List<ContentModel> getListByUserId(Long userId) throws Exception {
