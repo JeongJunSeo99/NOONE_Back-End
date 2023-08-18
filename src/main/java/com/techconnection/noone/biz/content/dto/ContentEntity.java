@@ -67,7 +67,8 @@ public class ContentEntity extends BaseEntity {
     private String shortYn;
 
     @Column(name = "view_yn")
-    @ColumnDefault("Y") //테스트
+//    @ColumnDefault("Y") //테스트
+    @ColumnDefault("N") //배포
     private String viewYn;
 
     @OneToMany(mappedBy = "contentEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
